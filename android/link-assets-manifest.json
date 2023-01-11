@@ -1,0 +1,301 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/._Hermitage Oblique.otf",
+      "sha1": "b6f4308f4ffb0cbe832e5f240fc0fef8ccad8274"
+    },
+    {
+      "path": "assets/fonts/._Hermitage Oblique.ttf",
+      "sha1": "b6f4308f4ffb0cbe832e5f240fc0fef8ccad8274"
+    },
+    {
+      "path": "assets/fonts/._Hermitage ObliqueOutline.otf",
+      "sha1": "b6f4308f4ffb0cbe832e5f240fc0fef8ccad8274"
+    },
+    {
+      "path": "assets/fonts/._Hermitage ObliqueOutline.ttf",
+      "sha1": "b6f4308f4ffb0cbe832e5f240fc0fef8ccad8274"
+    },
+    {
+      "path": "assets/fonts/._Hermitage ObliqueRough.otf",
+      "sha1": "b6f4308f4ffb0cbe832e5f240fc0fef8ccad8274"
+    },
+    {
+      "path": "assets/fonts/._Hermitage ObliqueRough.ttf",
+      "sha1": "b6f4308f4ffb0cbe832e5f240fc0fef8ccad8274"
+    },
+    {
+      "path": "assets/fonts/._Hermitage Outline.otf",
+      "sha1": "b6f4308f4ffb0cbe832e5f240fc0fef8ccad8274"
+    },
+    {
+      "path": "assets/fonts/._Hermitage Outline.ttf",
+      "sha1": "b6f4308f4ffb0cbe832e5f240fc0fef8ccad8274"
+    },
+    {
+      "path": "assets/fonts/._Hermitage Regular.otf",
+      "sha1": "b6f4308f4ffb0cbe832e5f240fc0fef8ccad8274"
+    },
+    {
+      "path": "assets/fonts/._Hermitage Regular.ttf",
+      "sha1": "b6f4308f4ffb0cbe832e5f240fc0fef8ccad8274"
+    },
+    {
+      "path": "assets/fonts/._Hermitage Rough.otf",
+      "sha1": "b6f4308f4ffb0cbe832e5f240fc0fef8ccad8274"
+    },
+    {
+      "path": "assets/fonts/._Hermitage Rough.ttf",
+      "sha1": "b6f4308f4ffb0cbe832e5f240fc0fef8ccad8274"
+    },
+    {
+      "path": "assets/fonts/demo.html",
+      "sha1": "7bb448ebcb35f300316bcde0d3e17c968f644cdf"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Black.eot",
+      "sha1": "bcc7fcfc17791a01f75735cafb811fdedba8ac3a"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Black.ttf",
+      "sha1": "9bcbadba442ed79dbbfb877f8bce321bd2d51771"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Black.woff",
+      "sha1": "2526c9247045c0217478fd5c8bd6eb8f91308a19"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Black.woff2",
+      "sha1": "a8ff722348d3d6172042c4f143efc73da91e46a1"
+    },
+    {
+      "path": "assets/fonts/GothamPro-BlackItalic.eot",
+      "sha1": "78ca12f4406488f2580cc5f5d8b45d7b2e7ff108"
+    },
+    {
+      "path": "assets/fonts/GothamPro-BlackItalic.ttf",
+      "sha1": "5e45f2d85510ca964d9e7df6c018f70ca1c2a10f"
+    },
+    {
+      "path": "assets/fonts/GothamPro-BlackItalic.woff",
+      "sha1": "3e0a177596aa600d8f0646d4b30da18fe3391ae5"
+    },
+    {
+      "path": "assets/fonts/GothamPro-BlackItalic.woff2",
+      "sha1": "4c2826289b3796633065ea852129ed483fdb974d"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Bold.eot",
+      "sha1": "49529f425eb8be5a95f7e28e7bc19ccbc2432eb8"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Bold.ttf",
+      "sha1": "d45c44e53a24f1417a48a72a88b5bf347314a418"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Bold.woff",
+      "sha1": "28d28be3ee828a19cbf95cad69306269adc9a886"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Bold.woff2",
+      "sha1": "bbd8e4905facdae2f738e5d2082e0f04532ea241"
+    },
+    {
+      "path": "assets/fonts/GothamPro-BoldItalic.eot",
+      "sha1": "bb86a36364a43d5fc1348aa25e57589c72ab125e"
+    },
+    {
+      "path": "assets/fonts/GothamPro-BoldItalic.ttf",
+      "sha1": "a8597a66ea82252dd5b9e96806e6d2e7af09b4d1"
+    },
+    {
+      "path": "assets/fonts/GothamPro-BoldItalic.woff",
+      "sha1": "a52eed0c7045865d59277a495e1ec8532ca7b4f5"
+    },
+    {
+      "path": "assets/fonts/GothamPro-BoldItalic.woff2",
+      "sha1": "c3dddbe1f425e9aecd242600138410c9ae1b456b"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Italic.eot",
+      "sha1": "62f979e1a4d964010bcdc530f5c524540db257d4"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Italic.ttf",
+      "sha1": "65ff7b7a8addd77c6bd31de57ab38e6de89eae9a"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Italic.woff",
+      "sha1": "8594b179cc3bc8e2d9b409a5dbaf5b7da5534bcb"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Italic.woff2",
+      "sha1": "0555319e81a900ded9c3814f9c1e0c09aa5e71ae"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Light.eot",
+      "sha1": "a59fb2a1c9a92e005cb1d7d9bd8405cde7568715"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Light.ttf",
+      "sha1": "edee67dba2ad5452f7abad9a97489392eb6486e2"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Light.woff",
+      "sha1": "782cefbee96affb492d21f31e07f80b7255b54a1"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Light.woff2",
+      "sha1": "dc3268734848ac7242369d2ad857ae2e8ad33355"
+    },
+    {
+      "path": "assets/fonts/GothamPro-LightItalic.eot",
+      "sha1": "59f5d869819812612452c1412fb184a2fa3676e5"
+    },
+    {
+      "path": "assets/fonts/GothamPro-LightItalic.ttf",
+      "sha1": "c0cc885c90c9b92074953d0cef543c8908cb9862"
+    },
+    {
+      "path": "assets/fonts/GothamPro-LightItalic.woff",
+      "sha1": "0c20d8fb512ae0ec0ef894d2435b647338cab1af"
+    },
+    {
+      "path": "assets/fonts/GothamPro-LightItalic.woff2",
+      "sha1": "bcb2154aa22e7753b7a837f77fd95d9bfd68219a"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Medium.eot",
+      "sha1": "f6e3bfbc665a2f194fa134269ffd439b655d95f6"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Medium.ttf",
+      "sha1": "27214fca50f1c565c944285a9d7af88bc46ba67b"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Medium.woff",
+      "sha1": "dee500111a039e5c26d495e56352a7bed49fd3b1"
+    },
+    {
+      "path": "assets/fonts/GothamPro-Medium.woff2",
+      "sha1": "8724d7243fc3ecbf5bd817d6fc3b58273e266266"
+    },
+    {
+      "path": "assets/fonts/GothamPro-MediumItalic.eot",
+      "sha1": "7cde8866f72c51ab8df2615cd92aed21f3fc3175"
+    },
+    {
+      "path": "assets/fonts/GothamPro-MediumItalic.ttf",
+      "sha1": "94f5631258254c27f9828a99615a3fdac63564a5"
+    },
+    {
+      "path": "assets/fonts/GothamPro-MediumItalic.woff",
+      "sha1": "97bd2def6f91f4dc706edf70778aeb72028eecc1"
+    },
+    {
+      "path": "assets/fonts/GothamPro-MediumItalic.woff2",
+      "sha1": "86213b76a1566d82da95820d88a3f07714d9c2d9"
+    },
+    {
+      "path": "assets/fonts/GothamPro.eot",
+      "sha1": "437d325f664e137f5b89666ca4e4891d4f06ad04"
+    },
+    {
+      "path": "assets/fonts/GothamPro.ttf",
+      "sha1": "d51952aa28b24eee59db8499c050965efea76d87"
+    },
+    {
+      "path": "assets/fonts/GothamPro.woff",
+      "sha1": "6cda5ce83c6b73b792e7680972e3fdd5a90b4ac8"
+    },
+    {
+      "path": "assets/fonts/GothamPro.woff2",
+      "sha1": "f1bd9388dd8e64e3e99ef4ea5e4d079efd4d43d0"
+    },
+    {
+      "path": "assets/fonts/GothamProNarrow-Bold.eot",
+      "sha1": "beead6dc75e0fd0c18825edbc3e01d69918d09c0"
+    },
+    {
+      "path": "assets/fonts/GothamProNarrow-Bold.ttf",
+      "sha1": "ab84b85068ba0cd955fc43a0df606dc1fda1ca3e"
+    },
+    {
+      "path": "assets/fonts/GothamProNarrow-Bold.woff",
+      "sha1": "8e2d23a00824714325084e734d6e8ffd59d1d593"
+    },
+    {
+      "path": "assets/fonts/GothamProNarrow-Bold.woff2",
+      "sha1": "9345cff91311bb9c24e3926d7f6d94d5e029d42a"
+    },
+    {
+      "path": "assets/fonts/GothamProNarrow-Medium.eot",
+      "sha1": "d89042e5c08a0abf731a0f7481bfd9a89b732a73"
+    },
+    {
+      "path": "assets/fonts/GothamProNarrow-Medium.ttf",
+      "sha1": "a060b2721a6143b90290032c2c8dda3dff41bda5"
+    },
+    {
+      "path": "assets/fonts/GothamProNarrow-Medium.woff",
+      "sha1": "1d247252200bbb8ec700055bcadad756d970c7d7"
+    },
+    {
+      "path": "assets/fonts/GothamProNarrow-Medium.woff2",
+      "sha1": "07eda3ed2c77f913c4024cd1deab78c806732a96"
+    },
+    {
+      "path": "assets/fonts/Hermitage Oblique.otf",
+      "sha1": "09f5ebd82bf1b13483f8a899c0c9bf31963cd12a"
+    },
+    {
+      "path": "assets/fonts/Hermitage Oblique.ttf",
+      "sha1": "209525ef7d132a7c73fb824d43978c7d393d0eb2"
+    },
+    {
+      "path": "assets/fonts/Hermitage ObliqueOutline.otf",
+      "sha1": "842dab6ac906a0cce1554286e0c455679241dcb0"
+    },
+    {
+      "path": "assets/fonts/Hermitage ObliqueOutline.ttf",
+      "sha1": "f60b4660cad13ef5ff535b350272c5330d4dfe6a"
+    },
+    {
+      "path": "assets/fonts/Hermitage ObliqueRough.otf",
+      "sha1": "265224e18173c7fa8dcdecc4ec73b40c408a9366"
+    },
+    {
+      "path": "assets/fonts/Hermitage ObliqueRough.ttf",
+      "sha1": "85255df91a1dd82db9f4998f2f6445b0bc593296"
+    },
+    {
+      "path": "assets/fonts/Hermitage Outline.otf",
+      "sha1": "e9d632326e66af9a3598f91118a92438fd664291"
+    },
+    {
+      "path": "assets/fonts/Hermitage Outline.ttf",
+      "sha1": "548ea5fbc0cdb2718057009a5d280f9107505ee0"
+    },
+    {
+      "path": "assets/fonts/Hermitage Regular.otf",
+      "sha1": "ff01a6d6b05264869bfbf27abe331ec124ee09b0"
+    },
+    {
+      "path": "assets/fonts/Hermitage Regular.ttf",
+      "sha1": "427a935e88ab7945bc115f036f6fef3c954585a8"
+    },
+    {
+      "path": "assets/fonts/Hermitage Rough.otf",
+      "sha1": "db643ab1bce50bdff877ad138c87f752b61f0eae"
+    },
+    {
+      "path": "assets/fonts/Hermitage Rough.ttf",
+      "sha1": "8972ad0dbfae36d1067523a696498fde0330b36c"
+    },
+    {
+      "path": "assets/fonts/stylesheet.css",
+      "sha1": "f366ca1995a82fe720c7e602a86fd2de129ed6e7"
+    }
+  ]
+}
