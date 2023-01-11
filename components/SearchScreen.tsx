@@ -9,7 +9,7 @@ const SearchScreen = ({navigation}) => {
           <IonIcons name='chevron-back' size={32} />
         </TouchableOpacity>
        
-        <Input size="2xl" variant="rounded"  placeholder="Search Products....." w='300'/>
+        <Input size="2xl" variant="rounded"  style={{fontFamily: 'GothamPro-Bold'}}  placeholder="Search Products....." w='300'/>
       </HStack>
       
     </>

@@ -25,7 +25,23 @@ const reviewData = [
     reviewContent: 'YES'
   }
 ]
-const ProductDetail = ({navigation}) => {
+
+const thumbData = [
+  {
+    id: 1,
+    src : require('../assets/images/s1.png')
+  },
+  {
+    id: 2,
+    src : require('../assets/images/s2.png')
+  },
+  {
+    id: 3,
+    src : require('../assets/images/s1.png')
+  }
+]
+const ProductDetail = ({ navigation }) => {
+  const [fullimage, setFullimage] = React.useState(false);
   return (
     <>
     
@@ -40,19 +56,47 @@ const ProductDetail = ({navigation}) => {
     </Box>
       {/*<CommonHeaderBar navigation={navigation} router= 'HomeScreen' />*/}
       <ScrollView height={500}>
+    
       <Box backgroundColor='#FEF5F6' pb='30'>
-        <ImageBackground>
+     
           <VStack mx='15' pt={15}>
-           
+          <Text fontSize='md' display='flex' style={{fontFamily: 'GothamPro-Bold'}}>LOreal Anti Age Super Good Product</Text>
             <Text pt={15} fontWeight='600'>Brand</Text>
             <Text fontWeight='900' display='flex' >Loreal</Text>
             <Text pt={15} fontWeight='600'>Type</Text>
             <Text fontWeight='900' display='flex'>Body</Text>
-            <Text fontWeight='900' display='flex' pt={30} fontSize='2xl'>$ 999</Text>
-            <Image source={{ uri: "https://cataas.com/cat" }} size="2xl" width='175' height='175' position='absolute' right='15' bottom='0' alt="cat" />
-          </VStack>
+            <HStack justifyContent='space-between'>
+            <VStack>
+                <Text fontWeight='900' pt={10} fontSize='xl'>25000 MMK</Text>
+                <Text fontWeight='500' style={{textDecorationLine:'line-through'}} fontSize='xl'>32000 MMK</Text>
+                <View style={{padding: 2, borderWidth: 5,display:'flex',justifyContent:'center',alignItems:'center'}}>
+                <Text  fontSize='sm'>0 % Off</Text>
+                </View>
+               
+                
+              </VStack>
+              <VStack>
+              <TouchableOpacity onPress={()=> navigation.navigate('ImageScreen')}>
+                <Image source={{ uri: "https://cataas.com/cat" }} alt="cat" width='230' height='180' marginTop='-100' />
+              </TouchableOpacity>
+            
           
-        </ImageBackground>
+          
+       
+                <HStack space={2} pt="5">
+                  {thumbData && thumbData.map((item) => (
+                     <TouchableOpacity onPress={()=> navigation.navigate('ImageScreen')} key={item.id}>
+                      <Image width='50' source={item.src} height='50' alt="cat" />
+                   </TouchableOpacity>
+                  ))}
+         
+           
+              </HStack>
+              </VStack>
+            </HStack>
+             
+          </VStack>
+             
         </Box>
        
       <Box backgroundColor='white'>
@@ -72,7 +116,7 @@ const ProductDetail = ({navigation}) => {
                   <Box p={3} mb={5} style={{ borderWidth: 2, borderRadius: 15, borderColor: 'gray' }} key={item.id}>
                   <Box style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
                     <Image source={require('../assets/images/p1.png')} size="sm" borderRadius='100' alt="sxeo" /> <Text style={{ fontFamily: 'GothamPro-Bold', marginLeft: 5 }}>{item.userName}</Text>
-               
+                   
                   </Box>
                   <HStack>
                
@@ -112,7 +156,7 @@ const ProductDetail = ({navigation}) => {
             <Text>1</Text>
             <TouchableOpacity><AntDesign size={20} name='minus' style={styles.iconbutton}/></TouchableOpacity>
           </HStack>
-          <Pressable><Text style={styles.addtocart}>Add To Cart</Text></Pressable>
+          <TouchableOpacity><Text style={styles.addtocart}>Add To Cart</Text></TouchableOpacity>
         </HStack>
 
       
@@ -133,7 +177,7 @@ const styles = StyleSheet.create({
   addtocart: {
     paddingHorizontal: 45,
     paddingVertical: 15,
-    backgroundColor: '#421926',
+    backgroundColor: '#FF6195',
     borderRadius: 15,
     color: '#FFEDF5',
     marginTop: 5,

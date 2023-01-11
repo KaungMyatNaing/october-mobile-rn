@@ -26,9 +26,9 @@ const CartItem = () => {
             
           </VStack>
           <HStack justifyContent='space-around' alignItems='center' space={1}>
-            <TouchableOpacity><AntDesign size={20} name='plus'/></TouchableOpacity>
+            <TouchableOpacity><View style={{display:'flex', justifyContent:'center',alignItems:'center', borderWidth: 1, padding: 3,borderRadius: 25}}><AntDesign size={20} name='plus' color='black'/></View></TouchableOpacity>
             <Text  fontFamily='GothamPro'>1</Text>
-            <TouchableOpacity><AntDesign size={20} name='minus'/></TouchableOpacity>
+            <TouchableOpacity><View style={{display:'flex', justifyContent:'center',alignItems:'center', borderWidth: 1, padding: 3,borderRadius: 25}}><AntDesign size={20} name='minus' color='black'/></View></TouchableOpacity>
           </HStack>
       </HStack>
       </Box>

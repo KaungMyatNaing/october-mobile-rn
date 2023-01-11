@@ -19,18 +19,18 @@ const CartScreen = () => {
       </ScrollView>
       <Box  borderTopWidth='1' borderTopColor='#F1ECEE' style={{position: 'absolute',bottom: 75, left: 0, right: 0,paddingHorizontal: 15,paddingBottom: 15}} backgroundColor='#FEF5F6' >
       
-        <VStack  space={5}>
+        <VStack  space={5} pt='28'>
 
          
-          <HStack justifyContent='space-around' alignItems='center' space={8} px={5}>
+          <HStack justifyContent='space-around' alignItems='center' px={2} >
          
             <Text style={{fontFamily: 'GothamPro-Bold'}}>Promo Code</Text>
             <Input width={95} placeholder="Promo"></Input>
             <TouchableOpacity><Text style={styles.addtocart}>Apply</Text></TouchableOpacity>
             
           </HStack>
-          <HStack justifyContent='space-between'>
-            <VStack space={3}>
+          <HStack justifyContent='space-between' alignItems='center' px={2}>
+            <VStack space={3} pl={2}>
               <HStack space={3}><Text  style={{fontFamily: 'GothamPro-Bold'}}>Discount Price</Text><Text>25000 MMK</Text></HStack>
               <HStack  space={3}><Text  style={{fontFamily: 'GothamPro-Bold'}}>Total</Text><Text>150000 MMK</Text></HStack>
             </VStack>
@@ -54,13 +54,14 @@ const styles = StyleSheet.create({
 
   },
   addtocart: {
-    paddingHorizontal: 45,
-    paddingVertical: 15,
-    backgroundColor: '#421926',
+    padding: 10,
+    width: 100,
+    backgroundColor: '#FF6195',
     borderRadius: 15,
     color: '#FFEDF5',
     marginTop: 5,
-    fontFamily: 'GothamPro-Bold'
+    fontFamily: 'GothamPro-Bold',
+    textAlign:'center'
     
   }
 })

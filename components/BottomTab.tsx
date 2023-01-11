@@ -45,14 +45,14 @@ const BottomTab = () => {
          <Tab.Screen name="Love" component={LoveScreen} options ={{headerShown: false, tabBarShowLabel: true,tabBarLabel: ({focused}) => <Text style={{ fontSize: 15,fontFamily: 'GothamPro', marginBottom: 10, color: focused ? "#E91E63" : "black"}}>Favourites</Text>, 
           tabBarIcon: ({focused})=>(
             <View style={{marginTop:10}}>
-            <MaterialCommunityIcons name={focused ? 'heart' : 'heart-outline'} color={focused ? 'pink' : 'black'} size={35}/>
+            <MaterialCommunityIcons name={focused ? 'heart' : 'heart-outline'} color={focused ? '#E91E63' : 'black'} size={35}/>
             </View>
           )
         }} />
          <Tab.Screen name="Cart" component={CartScreen} options ={{headerShown: false, tabBarShowLabel: true, tabBarLabel: ({focused}) => <Text style={{ fontSize: 15,fontFamily: 'GothamPro', marginBottom: 10, color: focused ? "#E91E63" : "black"}}>Cart</Text>, 
           tabBarIcon: ({focused})=>(
             <View style={{marginTop:10}}>
-            <MaterialCommunityIcons name={focused ? 'cart' : 'cart-outline'} color={focused ? 'pink' : 'black'} size={35}/>
+            <MaterialCommunityIcons name={focused ? 'cart' : 'cart-outline'} color={focused ? '#E91E63' : 'black'} size={35}/>
             </View>
           )
         }} />

@@ -44,6 +44,7 @@ import TopBarReborn from './components/TopBarReborn';
 import { createStackNavigator } from '@react-navigation/stack';
 import SearchScreen from './components/SearchScreen';
 import HomeScreen from './components/HomeScreen';
+import ImageScreen from './components/ImageScreen';
 
 
 const StackDuck = createStackNavigator()
@@ -100,6 +101,7 @@ const App = () => {
         <StackDuck.Screen options={{ headerShown: false }} name="TopBarReborn" component={TopBarReborn} />
         <StackDuck.Screen options={{ headerShown: false }} name="SearchScreen" component={SearchScreen} />
         <StackDuck.Screen options={{ headerShown: false }} name="HomeScreen" component={HomeScreen} />
+        <StackDuck.Screen options={{ headerShown: false }} name="ImageScreen" component={ImageScreen} />
         <StackDuck.Screen options = {{headerShown: false}} name="ProductDetail" component={ProductDetail}/>
         </StackDuck.Navigator>
      
