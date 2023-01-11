@@ -52,7 +52,7 @@ function TopBarReborn() {
         headerTitle: ()=> (
      <HStack justifyContent='space-between' space={65}>
         
-      <Image source={require('../assets/images/logo.png')} style={{width: 200,height: 45}} />
+      <Image source={require('../assets/images/logo.png')} style={{width: 200,height: 45}} alt="baka" />
       <HStack space={3} justifyContent='center' alignItems='center'>
       <TouchableOpacity>
       <AntIcons name='search1' color="black" size={30} onPress={() => navigation.navigate('SearchScreen')} />

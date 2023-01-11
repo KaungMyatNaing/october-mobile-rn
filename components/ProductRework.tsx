@@ -17,7 +17,7 @@ const ProductRework = () => {
      
     
         
-      <Image source={{ uri: "https://cataas.com/cat" }} size="xl" borderRadius="15" width='100%'/>
+      <Image source={{ uri: "https://cataas.com/cat" }} size="xl" borderRadius="15" width='100%' alt="baka/>
       <Icon name='home' size={25} color='#F8F6F9' position='absolute' top={0} right={0} />
         
         

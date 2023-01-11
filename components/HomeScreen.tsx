@@ -11,11 +11,11 @@ import ProductDetail from "./ProductDetail"
 import SwiperComponent from "./SwiperComponent"
 
 
-const Pruduct = () => {
+const Pruduct = (props: { navigation : any, route : string}) => {
   const [selected, setSelected] = React.useState(0);
   return (
     <>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={()=> props.navigation.navigate(props.route)}>
       <View style={{ display: 'flex', marginLeft: 15, justifyContent: 'center', alignItems: 'center', position: 'relative',marginBottom: 15 }}>
      
        
@@ -37,7 +37,7 @@ const Pruduct = () => {
     </>
   )
 }
-const PruductContainer = (props : {name : string}) => {
+const PruductContainer = (props : {name : string , navigation : any, route : string}) => {
   return (
     <>
       <Text style={{ fontSize: 20,paddingBottom: 15,marginLeft: 20,fontFamily: 'GothamPro-Bold'}}>{props.name}</Text>
@@ -46,37 +46,38 @@ const PruductContainer = (props : {name : string}) => {
           width: '90%', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingLeft: 35, paddingRight: 35, paddingBottom: 15
         }}>*/}
       <Container style={{flexDirection:'row'}}>
-        <Pruduct />
-        <Pruduct  />
-        <Pruduct  />
-          <Pruduct />
+        <Pruduct navigation={props.navigation} route={props.route} />
+        <Pruduct  navigation={props.navigation} route={props.route}/>
+        <Pruduct  navigation={props.navigation} route={props.route}/>
+          <Pruduct navigation={props.navigation} route={props.route}/>
           </Container>
         {/*</View> */}
         </ScrollView>
     </>
   )
 }
-const PPruductContainer = (props : {name : string}) => {
+const PPruductContainer = (props : {name : string, navigation : any, route : string}) => {
   return (
     <>
       <View style={{width: '100%',display:'flex'}}>
-        <PruductContainer name={props.name} />
+        <PruductContainer name={props.name} navigation={props.navigation} route={props.route} />
       </View>
     </>
   )
 }
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   return (
     <>
       
      
       
       <ScrollView>
-      <SwiperComponent/>
+        <SwiperComponent />
+        
       {/*<ProductBanner />*/}
       <Box w='100%' h='100%' paddingBottom='100' paddingTop='25'>
-        <PPruductContainer name="New Arrivals"/>
-        <PPruductContainer name="Tranding"/>
+          <PPruductContainer name="New Arrivals" navigation={navigation} route="ProductDetail" />
+        <PPruductContainer name="Tranding" navigation={navigation} route="ProductDetail"/>
         </Box>
         </ScrollView>
   

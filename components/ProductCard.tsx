@@ -10,7 +10,7 @@ const ProductCard = () => {
       
      
       <Center>
-      <Image source={{ uri: "https://cataas.com/cat" }} size="2xl" width='100%' height='250' borderRadius="15" />
+      <Image source={{ uri: "https://cataas.com/cat" }} alt="lol" size="2xl" width='100%' height='250' borderRadius="15" />
       </Center>
     
     

@@ -43,6 +43,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import TopBarReborn from './components/TopBarReborn';
 import { createStackNavigator } from '@react-navigation/stack';
 import SearchScreen from './components/SearchScreen';
+import HomeScreen from './components/HomeScreen';
+
+
 const StackDuck = createStackNavigator()
 
 const Section: React.FC<
@@ -63,7 +66,7 @@ const Product = () => {
   const tw = useTailwind();
   return (
     <Box style={styles.testcontainer}>
-  <Image source={{ uri: "https://cataas.com/cat" }} size="lg" borderRadius="15" />
+  <Image source={{ uri: "https://cataas.com/cat" }} size="lg" borderRadius="15" alt="cat" />
       <View style={{width:'100%',padding: 3}}>
         <Text style={styles.productname}>Diavlo</Text>
         <Text style={styles.subname}>Lorem</Text>
@@ -95,7 +98,9 @@ const App = () => {
      
       <StackDuck.Navigator>
         <StackDuck.Screen options={{ headerShown: false }} name="TopBarReborn" component={TopBarReborn} />
-        <StackDuck.Screen options={{ headerShown: false}} name="SearchScreen" component={SearchScreen} />
+        <StackDuck.Screen options={{ headerShown: false }} name="SearchScreen" component={SearchScreen} />
+        <StackDuck.Screen options={{ headerShown: false }} name="HomeScreen" component={HomeScreen} />
+        <StackDuck.Screen options = {{headerShown: false}} name="ProductDetail" component={ProductDetail}/>
         </StackDuck.Navigator>
      
     
