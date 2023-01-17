@@ -27,40 +27,40 @@ const BottomTab = () => {
     
       }}  >
       <Tab.Screen name="Home" component={HomeScreen} options={{
-        headerShown: false, tabBarShowLabel: true, tabBarLabel: ({focused}) => <Text style={{ fontSize: 15,fontFamily: 'GothamPro', marginBottom: 10, color: focused ? "#E91E63" : "black"}}>Home</Text>,        tabBarIcon: ({focused})=>(
+        headerShown: false, tabBarShowLabel: true, tabBarLabel: ({focused}) => <Text style={{ fontSize: 15,fontFamily: 'GothamPro', marginBottom: 10, color: focused ? "#E91E63" : "#616161"}}>Home</Text>,        tabBarIcon: ({focused})=>(
           <View style={{
             marginTop: 10
           }}>
-            <MaterialCommunityIcons name={focused ? 'home-variant' : 'home-variant-outline'} color={focused ? '#E91E63' : 'black'} size={35} />
+            <MaterialCommunityIcons name={focused ? 'home-variant' : 'home-variant-outline'} color={focused ? '#E91E63' : '#616161'} size={35} />
             </View>
           )
         }} />
-        <Tab.Screen name="Products" component={ProductsScreen} options ={{ headerShown: false, tabBarShowLabel: true,tabBarLabel: ({focused}) => <Text style={{ fontSize: 15,fontFamily: 'GothamPro', marginBottom: 10, color: focused ? "#E91E63" : "black"}}>Catagory</Text>, 
+        <Tab.Screen name="Products" component={ProductsScreen} options ={{ headerShown: false, tabBarShowLabel: true,tabBarLabel: ({focused}) => <Text style={{ fontSize: 15,fontFamily: 'GothamPro', marginBottom: 10, color: focused ? "#E91E63" : "#616161"}}>Catagory</Text>, 
           tabBarIcon: ({focused})=>(
             <View style={{marginTop:10}}>
-            <MaterialCommunityIcons name={focused ? 'shopping' : 'shopping-outline'} color={focused ? '#E91E63' : 'black'} size={35}/>
+            <MaterialCommunityIcons name={focused ? 'shopping' : 'shopping-outline'} color={focused ? '#E91E63' : '#616161'} size={35}/>
             </View>
           )
         }} />
-         <Tab.Screen name="Love" component={LoveScreen} options ={{headerShown: false, tabBarShowLabel: true,tabBarLabel: ({focused}) => <Text style={{ fontSize: 15,fontFamily: 'GothamPro', marginBottom: 10, color: focused ? "#E91E63" : "black"}}>Favourites</Text>, 
+         <Tab.Screen name="Love" component={LoveScreen} options ={{headerShown: false, tabBarShowLabel: true,tabBarLabel: ({focused}) => <Text style={{ fontSize: 15,fontFamily: 'GothamPro', marginBottom: 10, color: focused ? "#E91E63" : "#616161"}}>Favourites</Text>, 
           tabBarIcon: ({focused})=>(
             <View style={{marginTop:10}}>
-            <MaterialCommunityIcons name={focused ? 'heart' : 'heart-outline'} color={focused ? '#E91E63' : 'black'} size={35}/>
+            <MaterialCommunityIcons name={focused ? 'heart' : 'heart-outline'} color={focused ? '#E91E63' : '#616161'} size={35}/>
             </View>
           )
         }} />
-         <Tab.Screen name="Cart" component={CartScreen} options ={{headerShown: false, tabBarShowLabel: true, tabBarLabel: ({focused}) => <Text style={{ fontSize: 15,fontFamily: 'GothamPro', marginBottom: 10, color: focused ? "#E91E63" : "black"}}>Cart</Text>, 
+         <Tab.Screen name="Cart" component={CartScreen} options ={{headerShown: false, tabBarShowLabel: true, tabBarLabel: ({focused}) => <Text style={{ fontSize: 15,fontFamily: 'GothamPro', marginBottom: 10, color: focused ? "#E91E63" : "#616161"}}>Cart</Text>, 
           tabBarIcon: ({focused})=>(
             <View style={{marginTop:10}}>
-            <MaterialCommunityIcons name={focused ? 'cart' : 'cart-outline'} color={focused ? '#E91E63' : 'black'} size={35}/>
+            <MaterialCommunityIcons name={focused ? 'cart' : 'cart-outline'} color={focused ? '#E91E63' : '#616161'} size={35}/>
             </View>
           )
         }} />
-      <Tab.Screen name="Profile" component={ProfileMenuScreen} options={{ headerShown: false, tabBarShowLabel: true, tabBarLabel: ({focused}) => <Text style={{ fontSize: 15,fontFamily: 'GothamPro', marginBottom: 10, color: focused ? "#E91E63" : "black"}}>Profile</Text>,
+      <Tab.Screen name="Profile" component={ProfileMenuScreen} options={{ headerShown: false, tabBarShowLabel: true, tabBarLabel: ({focused}) => <Text style={{ fontSize: 15,fontFamily: 'GothamPro', marginBottom: 10, color: focused ? "#E91E63" : "#616161"}}>Profile</Text>,
           tabBarIcon: ({focused})=>(
             <View style={{marginTop:10}}>
               
-            <MaterialCommunityIcons name={focused ? 'face-woman' : 'face-woman-outline'} color={focused ? '#E91E63' : 'black'} size={35}/>
+            <MaterialCommunityIcons name={focused ? 'face-woman' : 'face-woman-outline'} color={focused ? '#E91E63' : '#616161'} size={35}/>
             </View>
           )
         }} />

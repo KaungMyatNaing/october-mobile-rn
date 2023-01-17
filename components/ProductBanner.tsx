@@ -13,8 +13,8 @@ const ProductBanner = () => {
       }} imageStyle={{ borderRadius: 15}}> */}
     <HStack space={125}>
       <Box padding='15'>
-        <Text style={styles.headingtitle}>Tranding</Text>
-        <Text style={styles.producttitle}>Loremmmmm</Text>
+      <Text style={styles.headingtitle}>Tranding</Text>
+      <Text style={styles.producttitle}>Loremmmmm</Text>
       <Text style={styles.pricetitle}>$ 999</Text>
       </Box>
       <Image source={{

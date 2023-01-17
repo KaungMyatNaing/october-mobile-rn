@@ -40,8 +40,19 @@ const thumbData = [
     src : require('../assets/images/s1.png')
   }
 ]
-const ProductDetail = ({ navigation }) => {
+const ProductDetail = ({ route, navigation }) => {
   const [fullimage, setFullimage] = React.useState(false);
+  const [resp, setResp] = React.useState({});
+  const { id } = route.params;
+  console.log(id);
+  React.useEffect(() => {
+    fetch(`https://api.october.com.mm/api/products/detail/${id}`)
+    .then((response) => response.json())
+    .then((data) => setResp(data.data.products));
+
+  console.log(resp[0].brand[0].name)
+  },[])
+ 
   return (
     <>
     
@@ -49,7 +60,7 @@ const ProductDetail = ({ navigation }) => {
        
       <HStack justifyContent='space-between' space={5}>
           <TouchableOpacity onPress={() => navigation.goBack()}><AntDesign size={20} name='left' /></TouchableOpacity>
-          <Text fontSize='md' display='flex' style={{fontFamily: 'GothamPro-Bold'}}>LOreal Anti Age Super Good Product</Text>
+          <Text fontSize='md' display='flex' style={{ fontFamily: 'GothamPro-Bold' }}></Text>
         <Pressable><AntDesign size={20} name='heart'/></Pressable>
           </HStack>
          
@@ -60,9 +71,9 @@ const ProductDetail = ({ navigation }) => {
       <Box backgroundColor='#FEF5F6' pb='30'>
      
           <VStack mx='15' pt={15}>
-          <Text fontSize='md' display='flex' style={{fontFamily: 'GothamPro-Bold'}}>LOreal Anti Age Super Good Product</Text>
+          <Text fontSize='md' display='flex' style={{fontFamily: 'GothamPro-Bold'}}></Text>
             <Text pt={15} fontWeight='600'>Brand</Text>
-            <Text fontWeight='900' display='flex' >Loreal</Text>
+            <Text fontWeight='900' display='flex' ></Text>
             <Text pt={15} fontWeight='600'>Type</Text>
             <Text fontWeight='900' display='flex'>Body</Text>
             <HStack justifyContent='space-between'>
