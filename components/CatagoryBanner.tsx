@@ -9,7 +9,7 @@ const CatagoryBanner = (props : {catagory_name : string , img_url : string}) => 
     <Box marginX='3' height= '75' width='95%' marginBottom='15' >
       {/*<TouchableOpacity>*/}
       <ImageBackground source={{ uri: `https://www.api.octoberecommerce.duckdns.org/${props.img_url}` }}
-       imageStyle={{ borderRadius: 15,height: 75}}>
+       imageStyle={{height: 100}}>
         
         <View style={{ width: '100%', height: '100%',textAlign:'center' }}>
         <Text style={styles.headingtitle}>{props.catagory_name}</Text>
