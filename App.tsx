@@ -45,7 +45,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import SearchScreen from './components/SearchScreen';
 import HomeScreen from './components/HomeScreen';
 import ImageScreen from './components/ImageScreen';
-
+import SplashScreen from './components/SplashScreen';
+import LoginScreen from './components/LoginScreen';
+import RegisterScreen from './components/RegisterScreen';
 
 const StackDuck = createStackNavigator()
 
@@ -98,6 +100,9 @@ const App = () => {
       {/*<BottomBarRework/>*/}
      
       <StackDuck.Navigator>
+        {/*<StackDuck.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} />*/}
+        <StackDuck.Screen options={{ headerShown: false }} name="LoginScreen" component={LoginScreen} />
+        <StackDuck.Screen options={{ headerShown: false }} name="RegisterScreen" component={RegisterScreen} />
         <StackDuck.Screen options={{ headerShown: false }} name="TopBarReborn" component={TopBarReborn} />
         <StackDuck.Screen options={{ headerShown: false }} name="SearchScreen" component={SearchScreen} />
         <StackDuck.Screen options={{ headerShown: false }} name="HomeScreen" component={HomeScreen} />

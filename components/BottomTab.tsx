@@ -42,7 +42,7 @@ const BottomTab = () => {
             </View>
           )
         }} />
-         <Tab.Screen name="Love" component={LoveScreen} options ={{headerShown: false, tabBarShowLabel: true,tabBarLabel: ({focused}) => <Text style={{ fontSize: 15,fontFamily: 'GothamPro', marginBottom: 10, color: focused ? "#E91E63" : "#616161"}}>Favourites</Text>, 
+         <Tab.Screen name="Love" component={LoveScreen} options ={{headerShown: false, tabBarShowLabel: true,tabBarLabel: ({focused}) => <Text style={{ fontSize: 15,fontFamily: 'GothamPro', marginBottom: 10, color: focused ? "#E91E63" : "#616161"}}>Fav</Text>, 
           tabBarIcon: ({focused})=>(
             <View style={{marginTop:10}}>
             <MaterialCommunityIcons name={focused ? 'heart' : 'heart-outline'} color={focused ? '#E91E63' : '#616161'} size={35}/>

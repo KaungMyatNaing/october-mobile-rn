@@ -6,14 +6,15 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const CatagoryBanner = (props : {catagory_name : string , img_url : string}) => {
   return (
-    <Box marginX='3' height= '75' width='95%' marginBottom='15' >
+    <Box marginX='3' height= '75' width='95%' marginBottom='85' >
       {/*<TouchableOpacity>*/}
       <ImageBackground source={{ uri: `https://www.api.octoberecommerce.duckdns.org/${props.img_url}` }}
-       imageStyle={{height: 100}}>
+       imageStyle={{height: 150, borderRadius: 15}}>
         
-        <View style={{ width: '100%', height: '100%',textAlign:'center' }}>
+        <View style={{ width: '100%', height: 150,textAlign:'center',backgroundColor:'black', opacity: 0.5 , borderRadius: 15}}>
+        
+        </View>
         <Text style={styles.headingtitle}>{props.catagory_name}</Text>
-       </View>
         
         
             
@@ -30,11 +31,13 @@ const CatagoryBanner = (props : {catagory_name : string , img_url : string}) => 
 const styles = StyleSheet.create({
   headingtitle: {
     
-    color: '#A28A90',
+    color: 'white',
     fontWeight: 'bold',
     fontSize: 30,
     textAlign: 'center',
-    paddingTop: 15
+    position: "absolute",
+    top: 50,
+   left: 150
     
    
     

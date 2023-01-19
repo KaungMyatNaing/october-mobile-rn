@@ -60,7 +60,8 @@ function TopBarReborn() {
       <TouchableOpacity>
       <AntIcons name='shoppingcart' color="black" size={35} />
       </TouchableOpacity>
-      </HStack>
+            </HStack>
+            {/*//reduce space for ui bug*/}
       
     
       
