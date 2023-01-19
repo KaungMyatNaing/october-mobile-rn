@@ -8,7 +8,16 @@
  * @format
  */
 
-import {Stack, Input, Container,Center,Image,Button,Box,ScrollView} from 'native-base';
+import {
+  Stack,
+  Input,
+  Container,
+  Center,
+  Image,
+  Button,
+  Box,
+  ScrollView,
+} from 'native-base';
 import React, {type PropsWithChildren} from 'react';
 import {
   SafeAreaView,
@@ -17,7 +26,6 @@ import {
   Text,
   useColorScheme,
   View,
-  
 } from 'react-native';
 
 import {
@@ -27,7 +35,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { useTailwind } from 'tailwind-rn';
+import {useTailwind} from 'tailwind-rn';
 import HeaderBar from './components/HeaderBar';
 import BottomBar from './components/BottomBar';
 import CatagoryPage from './components/CatagoryPage';
@@ -39,15 +47,14 @@ import ProductCard from './components/ProductCard';
 import ProductDetail from './components/ProductDetail';
 import RootNavigator from './components/RootNavigator';
 import BottomTab from './components/BottomTab';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import TopBarReborn from './components/TopBarReborn';
-import { createStackNavigator } from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import SearchScreen from './components/SearchScreen';
 import HomeScreen from './components/HomeScreen';
 import ImageScreen from './components/ImageScreen';
 
-
-const StackDuck = createStackNavigator()
+const StackDuck = createStackNavigator();
 
 const Section: React.FC<
   PropsWithChildren<{
@@ -61,28 +68,31 @@ const Section: React.FC<
       <Text style={[tw('text-blue-800 bg-white')]}>{title}</Text>
     </View>
   );
-  };
+};
 
 const Product = () => {
   const tw = useTailwind();
   return (
     <Box style={styles.testcontainer}>
-  <Image source={{ uri: "https://cataas.com/cat" }} size="lg" borderRadius="15" alt="cat" />
-      <View style={{width:'100%',padding: 3}}>
+      <Image
+        source={{uri: 'https://cataas.com/cat'}}
+        size="lg"
+        borderRadius="15"
+        alt="cat"
+      />
+      <View style={{width: '100%', padding: 3}}>
         <Text style={styles.productname}>Diavlo</Text>
         <Text style={styles.subname}>Lorem</Text>
         <Text style={styles.pricename}>$ 100</Text>
-  </View>
-  <Stack direction='row' space={50}>
-  <Text>❤️</Text>
- 
- <Text>🛒</Text>
-  </Stack>
+      </View>
+      <Stack direction="row" space={50}>
+        <Text>❤️</Text>
 
-  </Box>
-  )
-  
-  }
+        <Text>🛒</Text>
+      </Stack>
+    </Box>
+  );
+};
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -93,20 +103,36 @@ const App = () => {
 
   return (
     <NavigationContainer>
-    
-    
       {/*<BottomBarRework/>*/}
-     
+
       <StackDuck.Navigator>
-        <StackDuck.Screen options={{ headerShown: false }} name="TopBarReborn" component={TopBarReborn} />
-        <StackDuck.Screen options={{ headerShown: false }} name="SearchScreen" component={SearchScreen} />
-        <StackDuck.Screen options={{ headerShown: false }} name="HomeScreen" component={HomeScreen} />
-        <StackDuck.Screen options={{ headerShown: false }} name="ImageScreen" component={ImageScreen} />
-        <StackDuck.Screen options = {{headerShown: false}} name="ProductDetail" component={ProductDetail}/>
-        </StackDuck.Navigator>
-     
-    
-      </NavigationContainer>
+        <StackDuck.Screen
+          options={{headerShown: false}}
+          name="TopBarReborn"
+          component={TopBarReborn}
+        />
+        <StackDuck.Screen
+          options={{headerShown: false}}
+          name="SearchScreen"
+          component={SearchScreen}
+        />
+        <StackDuck.Screen
+          options={{headerShown: false}}
+          name="HomeScreen"
+          component={HomeScreen}
+        />
+        <StackDuck.Screen
+          options={{headerShown: false}}
+          name="ImageScreen"
+          component={ImageScreen}
+        />
+        <StackDuck.Screen
+          options={{headerShown: false}}
+          name="ProductDetail"
+          component={ProductDetail}
+        />
+      </StackDuck.Navigator>
+    </NavigationContainer>
   );
 };
 
@@ -116,7 +142,7 @@ const styles = StyleSheet.create({
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   sectionContainer: {
     marginTop: 32,
@@ -137,37 +163,34 @@ const styles = StyleSheet.create({
   mcontainer: {
     width: '100%',
     flex: 1,
-   justifyContent: 'center',
+    justifyContent: 'center',
     alignItems: 'center',
-   flexDirection:'row'
+    flexDirection: 'row',
   },
   testcontainer: {
     width: '33.33%',
     flex: 1,
-   justifyContent: 'center',
+    justifyContent: 'center',
     alignItems: 'center',
     border: 'solid',
     padding: 10,
     borderRadius: 15,
-    
   },
   textcontainer: {
-    textAlign: 'left'
-   
+    textAlign: 'left',
   },
   productname: {
     fontWeight: '400',
     letterSpacing: 1.5,
-    color: 'black'
+    color: 'black',
   },
   subname: {
     color: '#B7B7B7',
-
   },
   pricename: {
     fontWeight: '400',
-    color: 'black'
-  }
+    color: 'black',
+  },
 });
 
 export default App;
