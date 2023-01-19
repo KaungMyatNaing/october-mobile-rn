@@ -3,12 +3,16 @@ import { Center,Image,HStack } from "native-base"
 import { useState } from "react"
 import React from "react"
 import AntDesign from 'react-native-vector-icons/AntDesign';
-
+import IonIcons from 'react-native-vector-icons/Ionicons';
 const RegisterScreen = ({ navigation }) => {
   const [securepassword, setSecurepassword] = React.useState(true);
   const [securerepassword,setSecurerepassword] = React.useState(true);
   return (
+    <>
     <View style={styles.container}>
+      
+          <IonIcons name='chevron-back' size={32} color='black' style={{position: 'absolute', top: 25}} onPress={() => navigation.goBack()}/>
+       
       <Center>
         <Image source={require('../assets/images/logo.png')} style={{width:175,height: 50}} alt="logo"/>
 
@@ -41,7 +45,8 @@ const RegisterScreen = ({ navigation }) => {
         </TouchableOpacity>
     
        </Center>
-    </View>
+      </View>
+      </>
   )
 }
 const styles = StyleSheet.create({

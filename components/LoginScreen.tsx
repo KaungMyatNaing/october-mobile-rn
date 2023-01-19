@@ -12,9 +12,7 @@ const LoginScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Center>
         <Image source={require('../assets/images/logo.png')} style={{width:175,height: 50}} alt="logo"/>
-    <Text style={{marginTop: 15}}>Welcome Back</Text>
-        <Text>If You don't have an account, create account here.</Text>
-        <TouchableOpacity onPress={() => { navigation.navigate("RegisterScreen"); console.log("Register page") }}><Text style={styles.smallbutton}>Register</Text></TouchableOpacity>
+   
     <Text>or</Text>
 
         <Text style={styles.titleheading}>Log In</Text>
@@ -27,7 +25,9 @@ const LoginScreen = ({ navigation }) => {
        
       
         <TouchableOpacity><Text style={styles.addtocart}>Login</Text></TouchableOpacity>
-        <TouchableOpacity><Text style={{padding: 2, borderBottomWidth: 1,marginTop: 15}}>Forgot Password</Text></TouchableOpacity>
+        <TouchableOpacity><Text style={{ padding: 2, borderBottomWidth: 1, marginTop: 15 }}>Forgot Password</Text></TouchableOpacity>
+        <Text style={{marginTop: 30}}>If You don't have an account, create account </Text>
+        <TouchableOpacity onPress={() => { navigation.navigate("RegisterScreen"); console.log("Register page") }}><Text style={styles.smallbutton}>Register</Text></TouchableOpacity>
        </Center>
     </View>
   )
