@@ -1,7 +1,30 @@
-import React from "react";
-import {StyleSheet,ImageBackground, TouchableHighlight, Pressable,TouchableOpacity,View} from 'react-native'
-import { VStack, HStack, Button, IconButton, Icon, Text, NativeBaseProvider, Center, Box, StatusBar, Container,Input,Image,ScrollView, Stack} from "native-base";
-import { SafeAreaView } from "react-native-safe-area-context";
+import React from 'react';
+import {
+  StyleSheet,
+  ImageBackground,
+  TouchableHighlight,
+  Pressable,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {
+  VStack,
+  HStack,
+  Button,
+  IconButton,
+  Icon,
+  Text,
+  NativeBaseProvider,
+  Center,
+  Box,
+  StatusBar,
+  Container,
+  Input,
+  Image,
+  ScrollView,
+  Stack,
+} from 'native-base';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -10,180 +33,260 @@ const reviewData = [
     id: 1,
     userName: 'Belle',
     reviewStar: 9,
-    reviewContent: 'ta eain lone kyite kya par dal shin. a yan kg dae product lay pr'
+    reviewContent:
+      'ta eain lone kyite kya par dal shin. a yan kg dae product lay pr',
   },
   {
     id: 2,
     userName: 'Stella',
     reviewStar: 5,
-    reviewContent: 'zay kyi par dl'
+    reviewContent: 'zay kyi par dl',
   },
   {
     id: 3,
     userName: 'Mike',
     reviewStar: 2,
-    reviewContent: 'YES'
-  }
-]
+    reviewContent: 'YES',
+  },
+];
 
 const thumbData = [
   {
     id: 1,
-    src : require('../assets/images/s1.png')
+    src: require('../assets/images/s1.png'),
   },
   {
     id: 2,
-    src : require('../assets/images/s2.png')
+    src: require('../assets/images/s2.png'),
   },
   {
     id: 3,
-    src : require('../assets/images/s1.png')
-  }
-]
-const ProductDetail = ({ route, navigation }) => {
+    src: require('../assets/images/s1.png'),
+  },
+];
+const ProductDetail = ({route, navigation}) => {
   const [fullimage, setFullimage] = React.useState(false);
   const [resp, setResp] = React.useState({});
-  const { id } = route.params;
+  const {id} = route.params;
   console.log(id);
   React.useEffect(() => {
     fetch(`https://api.october.com.mm/api/products/detail/${id}`)
-    .then((response) => response.json())
-    .then((data) => setResp(data.data.products));
+      .then(response => response.json())
+      .then(data => setResp(data.data.products));
 
-  console.log(resp[0].brand[0].name)
-  },[])
- 
+    console.log(resp[0].brand[0].name);
+  }, []);
+
   return (
     <>
-    
-       <Box width='100%' px={15} py={4}>
-       
-      <HStack justifyContent='space-between' space={5}>
-          <TouchableOpacity onPress={() => navigation.goBack()}><AntDesign size={20} name='left' /></TouchableOpacity>
-          <Text fontSize='md' display='flex' style={{ fontFamily: 'GothamPro-Bold' }}></Text>
-        <Pressable><AntDesign size={20} name='heart'/></Pressable>
-          </HStack>
-         
-    </Box>
+      <Box width="100%" px={15} py={4}>
+        <HStack justifyContent="space-between" space={5}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <AntDesign size={20} name="left" />
+          </TouchableOpacity>
+          <Text
+            fontSize="md"
+            display="flex"
+            style={{fontFamily: 'GothamPro-Bold'}}></Text>
+          <Pressable>
+            <AntDesign size={20} name="heart" />
+          </Pressable>
+        </HStack>
+      </Box>
       {/*<CommonHeaderBar navigation={navigation} router= 'HomeScreen' />*/}
       <ScrollView height={500}>
-    
-      <Box backgroundColor='#FEF5F6' pb='30'>
-     
-          <VStack mx='15' pt={15}>
-          <Text fontSize='md' display='flex' style={{fontFamily: 'GothamPro-Bold'}}></Text>
-            <Text pt={15} fontWeight='600'>Brand</Text>
-            <Text fontWeight='900' display='flex' ></Text>
-            <Text pt={15} fontWeight='600'>Type</Text>
-            <Text fontWeight='900' display='flex'>Body</Text>
-            <HStack justifyContent='space-between'>
-            <VStack>
-                <Text fontWeight='900' pt={10} fontSize='xl'>25000 MMK</Text>
-                <Text fontWeight='500' style={{textDecorationLine:'line-through'}} fontSize='xl'>32000 MMK</Text>
-                <View style={{padding: 2, borderWidth: 5,display:'flex',justifyContent:'center',alignItems:'center'}}>
-                <Text  fontSize='sm'>0 % Off</Text>
+        <Box backgroundColor="#FEF5F6" pb="30">
+          <VStack mx="15" pt={15}>
+            <Text
+              fontSize="md"
+              display="flex"
+              style={{fontFamily: 'GothamPro-Bold'}}></Text>
+            <Text pt={15} fontWeight="600">
+              Brand
+            </Text>
+            <Text fontWeight="900" display="flex"></Text>
+            <Text pt={15} fontWeight="600">
+              Type
+            </Text>
+            <Text fontWeight="900" display="flex">
+              Body
+            </Text>
+            <HStack justifyContent="space-between">
+              <VStack>
+                <Text fontWeight="900" pt={10} fontSize="xl">
+                  25000 MMK
+                </Text>
+                <Text
+                  fontWeight="500"
+                  style={{textDecorationLine: 'line-through'}}
+                  fontSize="xl">
+                  32000 MMK
+                </Text>
+                <View
+                  style={{
+                    padding: 2,
+                    borderWidth: 5,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Text fontSize="sm">0 % Off</Text>
                 </View>
-               
-                
               </VStack>
               <VStack>
-              <TouchableOpacity onPress={()=> navigation.navigate('ImageScreen')}>
-                <Image source={{ uri: "https://cataas.com/cat" }} alt="cat" width='230' height='180' marginTop='-100' />
-              </TouchableOpacity>
-            
-          
-          
-       
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('ImageScreen')}>
+                  <Image
+                    source={{uri: 'https://cataas.com/cat'}}
+                    alt="cat"
+                    width="230"
+                    height="180"
+                    marginTop="-100"
+                  />
+                </TouchableOpacity>
+
                 <HStack space={2} pt="5">
-                  {thumbData && thumbData.map((item) => (
-                     <TouchableOpacity onPress={()=> navigation.navigate('ImageScreen')} key={item.id}>
-                      <Image width='50' source={item.src} height='50' alt="cat" />
-                   </TouchableOpacity>
-                  ))}
-         
-           
-              </HStack>
+                  {thumbData &&
+                    thumbData.map(item => (
+                      <TouchableOpacity
+                        onPress={() => navigation.navigate('ImageScreen')}
+                        key={item.id}>
+                        <Image
+                          width="50"
+                          source={item.src}
+                          height="50"
+                          alt="cat"
+                        />
+                      </TouchableOpacity>
+                    ))}
+                </HStack>
               </VStack>
             </HStack>
-             
           </VStack>
-             
         </Box>
-       
-      <Box backgroundColor='white'>
-        
-        <Box mx='15' pb='200' pt='15' borderTopRadius='35' >
-          
+
+        <Box backgroundColor="white">
+          <Box mx="15" pb="200" pt="15" borderTopRadius="35">
             <VStack>
-          <Text fontWeight='600' fontSize='xl' style={{fontFamily: 'GothamPro-Bold'}}>Description</Text>
-          <Text color='#95999D' lineHeight='20' style={{ fontFamily: 'GothamPro-Bold' }}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias ex molestiae tempore deleniti. Eaque odit totam, possimus asperiores dolorum, autem suscipit dolor sed laudantium, nesciunt nobis quia nostrum labore consequuntur?autem suscipit dolor sed laudantium, nesciunt nobis quia nostrum labore consequuntur?autem suscipit dolor sed laudantium, nesciunt nobis quia nostrum labore consequuntur?nesciunt nobis quia nostrum labore consequuntur?nesciunt nobis quia nostrum labore consequuntur?nesciunt nobis quia nostrum labore consequuntur?nesciunt nobis quia nostrum labore consequuntur?</Text>
-              
-              
+              <Text
+                fontWeight="600"
+                fontSize="xl"
+                style={{fontFamily: 'GothamPro-Bold'}}>
+                Description
+              </Text>
+              <Text
+                color="#95999D"
+                lineHeight="20"
+                style={{fontFamily: 'GothamPro-Bold'}}>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Molestias ex molestiae tempore deleniti. Eaque odit totam,
+                possimus asperiores dolorum, autem suscipit dolor sed
+                laudantium, nesciunt nobis quia nostrum labore
+                consequuntur?autem suscipit dolor sed laudantium, nesciunt nobis
+                quia nostrum labore consequuntur?autem suscipit dolor sed
+                laudantium, nesciunt nobis quia nostrum labore
+                consequuntur?nesciunt nobis quia nostrum labore
+                consequuntur?nesciunt nobis quia nostrum labore
+                consequuntur?nesciunt nobis quia nostrum labore
+                consequuntur?nesciunt nobis quia nostrum labore consequuntur?
+              </Text>
             </VStack>
-            
+
             <VStack pt={15}>
-              <Text fontWeight='600' fontSize='xl' style={{ fontFamily: 'GothamPro-Bold' }}>Review</Text>
-              {reviewData && reviewData.map((item, index) => (
-                  <Box p={3} mb={5} style={{ borderWidth: 2, borderRadius: 15, borderColor: 'gray' }} key={item.id}>
-                  <Box style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
-                    <Image source={require('../assets/images/p1.png')} size="sm" borderRadius='100' alt="sxeo" /> <Text style={{ fontFamily: 'GothamPro-Bold', marginLeft: 5 }}>{item.userName}</Text>
-                   
+              <Text
+                fontWeight="600"
+                fontSize="xl"
+                style={{fontFamily: 'GothamPro-Bold'}}>
+                Review
+              </Text>
+              {reviewData &&
+                reviewData.map((item, index) => (
+                  <Box
+                    p={3}
+                    mb={5}
+                    style={{
+                      borderWidth: 2,
+                      borderRadius: 15,
+                      borderColor: 'gray',
+                    }}
+                    key={item.id}>
+                    <Box
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                      }}>
+                      <Image
+                        source={require('../assets/images/p1.png')}
+                        size="sm"
+                        borderRadius="100"
+                        alt="sxeo"
+                      />{' '}
+                      <Text
+                        style={{fontFamily: 'GothamPro-Bold', marginLeft: 5}}>
+                        {item.userName}
+                      </Text>
+                    </Box>
+                    <HStack>
+                      {Array.from({length: item.reviewStar}, (x, i) => (
+                        <MaterialCommunityIcons
+                          key={i}
+                          name="star"
+                          size={20}
+                          color="#FFA000"
+                        />
+                      ))}
+                    </HStack>
+
+                    <Text
+                      color="#95999D"
+                      lineHeight="20"
+                      style={{fontFamily: 'GothamPro-Bold'}}>
+                      {item.reviewContent}
+                    </Text>
                   </Box>
-                  <HStack>
-               
-                  
-                    {
-                      Array.from({ length: item.reviewStar }, (x,i) => (
-                        <MaterialCommunityIcons key={i} name="star" size={20} color="#FFA000" />
-                      ))
-                    }
-
-                    
-                  </HStack>
-                
-                
-                 
-                  <Text color='#95999D' lineHeight='20' style={{ fontFamily: 'GothamPro-Bold' }}>{item.reviewContent}</Text>
-              
-                </Box>
-              ))}
-            
-             
+                ))}
             </VStack>
-       
           </Box>
-         
-        
         </Box>
-        </ScrollView>
+      </ScrollView>
 
-    
-      <Box  borderTopWidth='1' borderTopColor='#F1ECEE' style={{position: 'absolute',bottom: 0, left: 0, right: 0,paddingHorizontal: 15,paddingBottom: 15}} backgroundColor='#FEF5F6' >
-      
-        <HStack  justifyContent='space-between' alignItems='center' space={5}>
-
-          <HStack justifyContent='space-between' alignItems='center' space={25}>
-            <TouchableOpacity><AntDesign size={20} name='plus' style={styles.iconbutton} /></TouchableOpacity>
+      <Box
+        borderTopWidth="1"
+        borderTopColor="#F1ECEE"
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          paddingHorizontal: 15,
+          paddingBottom: 15,
+        }}
+        backgroundColor="#FEF5F6">
+        <HStack justifyContent="space-between" alignItems="center" space={5}>
+          <HStack justifyContent="space-between" alignItems="center" space={25}>
+            <TouchableOpacity>
+              <AntDesign size={20} name="plus" style={styles.iconbutton} />
+            </TouchableOpacity>
             <Text>1</Text>
-            <TouchableOpacity><AntDesign size={20} name='minus' style={styles.iconbutton}/></TouchableOpacity>
+            <TouchableOpacity>
+              <AntDesign size={20} name="minus" style={styles.iconbutton} />
+            </TouchableOpacity>
           </HStack>
-          <TouchableOpacity><Text style={styles.addtocart}>Add To Cart</Text></TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.addtocart}>Add To Cart</Text>
+          </TouchableOpacity>
         </HStack>
-
-      
       </Box>
-     
     </>
-  
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   iconbutton: {
-    padding:10,
+    padding: 10,
     borderRadius: 10,
-    backgroundColor: '#F4DEE3'
-
+    backgroundColor: '#F4DEE3',
   },
   addtocart: {
     paddingHorizontal: 45,
@@ -192,8 +295,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     color: '#FFEDF5',
     marginTop: 5,
-    fontFamily: 'GothamPro-Bold'
-    
-  }
-})
-export default ProductDetail
+    fontFamily: 'GothamPro-Bold',
+  },
+});
+export default ProductDetail;

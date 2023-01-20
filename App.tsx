@@ -53,6 +53,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import SearchScreen from './components/SearchScreen';
 import HomeScreen from './components/HomeScreen';
 import ImageScreen from './components/ImageScreen';
+import CheckOutScreen from './components/CheckOutScreen';
 
 const StackDuck = createStackNavigator();
 
@@ -115,6 +116,12 @@ const App = () => {
           options={{headerShown: false}}
           name="SearchScreen"
           component={SearchScreen}
+        />
+        {/* checkout  */}
+        <StackDuck.Screen
+          options={{headerShown: false}}
+          name="CheckOutScreen"
+          component={CheckOutScreen}
         />
         <StackDuck.Screen
           options={{headerShown: false}}

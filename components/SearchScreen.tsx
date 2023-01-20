@@ -13,11 +13,18 @@ import {
   FormControl,
   Button,
   ScrollView,
+  AlertDialog,
 } from 'native-base';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import AntIcon from 'react-native-vector-icons/AntDesign';
+import {color} from 'react-native-reanimated';
 const SearchScreen = ({navigation}) => {
   const [showModal, setShowModal] = React.useState<boolean>(false);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const onClose = () => setIsOpen(false);
+
+  const cancelRef = React.useRef(null);
   return (
     <>
       <HStack space={4} marginY={2} marginX={2}>
@@ -53,8 +60,47 @@ const SearchScreen = ({navigation}) => {
                 Default Billing Address
               </Heading>
               <HStack space={1} justifyContent={'center'} alignItems={'center'}>
-                <IonIcons name="ios-checkbox-outline" size={25} />
-                <AntIcon name="delete" size={25} />
+                <IonIcons
+                  name="ios-checkbox-outline"
+                  size={25}
+                  style={{color: 'darkgreen'}}
+                />
+
+                <AntIcon
+                  name="delete"
+                  size={25}
+                  style={{color: 'red'}}
+                  onPress={() => setIsOpen(!isOpen)}
+                />
+
+                {/* delete dialog  */}
+                <AlertDialog
+                  leastDestructiveRef={cancelRef}
+                  isOpen={isOpen}
+                  onClose={onClose}>
+                  <AlertDialog.Content>
+                    <AlertDialog.CloseButton />
+                    <AlertDialog.Header>Delete Address</AlertDialog.Header>
+                    <AlertDialog.Body>
+                      This will remove the address. This action cannot be
+                      reversed. Deleted data can not be recovered.
+                    </AlertDialog.Body>
+                    <AlertDialog.Footer>
+                      <Button.Group space={2}>
+                        <Button
+                          variant="unstyled"
+                          colorScheme="coolGray"
+                          onPress={onClose}
+                          ref={cancelRef}>
+                          Cancel
+                        </Button>
+                        <Button colorScheme="danger" onPress={onClose}>
+                          Delete
+                        </Button>
+                      </Button.Group>
+                    </AlertDialog.Footer>
+                  </AlertDialog.Content>
+                </AlertDialog>
               </HStack>
             </HStack>
             <Divider
@@ -69,81 +115,18 @@ const SearchScreen = ({navigation}) => {
               <Text bold fontSize={18}>
                 Myanmar Web Creator
               </Text>
-              <Text fontSize={18}>Yangon, Myanmar</Text>
-              <Text fontSize={18}>No.624, Gankgaw Yeik Thar Street 16/4</Text>
-              <Text fontSize={18}>0900000000</Text>
-            </VStack>
-          </Container>
-          <Container
-            h="auto"
-            w="100%"
-            rounded="lg"
-            shadow={0}
-            mb={2}
-            backgroundColor="gray.200">
-            <HStack
-              space={12}
-              m={3}
-              justifyContent={'center'}
-              alignItems={'center'}>
-              <Heading size="md">Default Billing Address</Heading>
-              <HStack space={1} justifyContent={'center'} alignItems={'center'}>
-                <IonIcons name="ios-checkbox-outline" size={25} />
-                <AntIcon name="delete" size={25} />
-              </HStack>
-            </HStack>
-            <Divider
-              _light={{
-                bg: 'muted.800',
-              }}
-              _dark={{
-                bg: 'muted.50',
-              }}
-            />
-            <VStack space={2} p={3}>
-              <Text bold fontSize={18}>
-                Myanmar Web Creator
+              <Text fontSize={18} style={{color: 'gray'}}>
+                Yangon, Myanmar
               </Text>
-              <Text fontSize={18}>Yangon, Myanmar</Text>
-              <Text fontSize={18}>No.624, Gankgaw Yeik Thar Street 16/4</Text>
-              <Text fontSize={18}>0900000000</Text>
-            </VStack>
-          </Container>
-          <Container
-            h="auto"
-            w="100%"
-            rounded="lg"
-            shadow={0}
-            mb={2}
-            backgroundColor="gray.200">
-            <HStack
-              space={12}
-              m={3}
-              justifyContent={'center'}
-              alignItems={'center'}>
-              <Heading size="md">Default Billing Address</Heading>
-              <HStack space={1} justifyContent={'center'} alignItems={'center'}>
-                <IonIcons name="ios-checkbox-outline" size={25} />
-                <AntIcon name="delete" size={25} />
-              </HStack>
-            </HStack>
-            <Divider
-              _light={{
-                bg: 'muted.800',
-              }}
-              _dark={{
-                bg: 'muted.50',
-              }}
-            />
-            <VStack space={2} p={3}>
-              <Text bold fontSize={18}>
-                Myanmar Web Creator
+              <Text fontSize={18} style={{color: 'gray'}}>
+                No.624, Gankgaw Yeik Thar Street 16/4
               </Text>
-              <Text fontSize={18}>Yangon, Myanmar</Text>
-              <Text fontSize={18}>No.624, Gankgaw Yeik Thar Street 16/4</Text>
-              <Text fontSize={18}>0900000000</Text>
+              <Text fontSize={18} style={{color: 'gray'}}>
+                0900000000
+              </Text>
             </VStack>
           </Container>
+
           <Container
             h="56"
             w="340"
@@ -165,6 +148,7 @@ const SearchScreen = ({navigation}) => {
               <IonIcons
                 name="ios-add-circle"
                 size={100}
+                style={{color: '#FF6195'}}
                 onPress={() => setShowModal(true)}
               />
               <Modal isOpen={showModal} onClose={() => setShowModal(false)}>

@@ -11,8 +11,9 @@ import {Input, Stack, Center, NativeBaseProvider, HStack} from 'native-base';
 import BottomTab from './BottomTab';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesomeIcons from 'react-native-vector-icons/FontAwesome';
-import SearchScreen from './SearchScreen';
 import AntIcons from 'react-native-vector-icons/AntDesign';
+import SearchScreen from './SearchScreen';
+import CheckOutScreen from './CheckOutScreen';
 
 function Feed({navigation}) {
   return (
@@ -58,7 +59,7 @@ function TopBarReborn() {
                   name="search1"
                   color="black"
                   size={30}
-                  onPress={() => navigation.navigate('SearchScreen')}
+                  onPress={() => navigation.navigate('CheckOutScreen')}
                 />
               </TouchableOpacity>
               <TouchableOpacity>
