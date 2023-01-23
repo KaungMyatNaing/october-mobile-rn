@@ -4,16 +4,55 @@ import { useState } from "react"
 import React from "react"
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import IonIcons from 'react-native-vector-icons/Ionicons';
+import { useToast } from 'native-base';
 const RegisterScreen = ({ navigation }) => {
   const [securepassword, setSecurepassword] = React.useState(true);
-  const [securerepassword,setSecurerepassword] = React.useState(true);
+  const [securerepassword, setSecurerepassword] = React.useState(true);
+  const toast = useToast();
+  const [password, setPassword] = React.useState('');
+  const [repassword, setRepassword] = React.useState('');
+  const [samepassworderror, setSamepassworderror] = React.useState('');
+  const [error, setError] = React.useState('');
+  React.useEffect(() => {
+    fetch('https://api.october.com.mm/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: 'XYFHCGTE',
+        email: 'gghjghbd@gmail.com',
+        password: 'HGJG565',
+    
+      }),
+     
+    })
+      .then((response) => response.json())
+      .then(data => {
+        console.log(data)
+        if ("errors" in data) {
+          console.log(`Something is wrong. Possible Causes 
+    - Email is duplicate.
+    - Your password is less than 8 characters.
+    - Your password is not strong enough.
+    `);
+     
+          
+        }
+      }
+    ).catch((e) => console.log(e))
+        
+    
+  },[])
   return (
     <>
     <View style={styles.container}>
       
-          <IonIcons name='chevron-back' size={32} color='black' style={{position: 'absolute', top: 25}} onPress={() => navigation.goBack()}/>
-       
-      <Center>
+        <IonIcons name='chevron-back' size={32} color='black' style={{ position: 'absolute', top: 25 }} onPress={() => navigation.goBack()} />
+        
+          
+        <Center>
+        <Text style={{width: 250, color:'red'}}>
+            {error}
+          </Text>
         <Image source={require('../assets/images/logo.png')} style={{width:175,height: 50}} alt="logo"/>
 
         <Text style={styles.titleheading}>Register</Text>
@@ -21,19 +60,73 @@ const RegisterScreen = ({ navigation }) => {
       <Center>
       <TextInput style={styles.logininput} placeholder="Name"/>
         <TextInput style={styles.logininput} placeholder="Email Address" />
-        <TextInput style={styles.logininput} placeholder="Password" secureTextEntry={securepassword} />
+        <TextInput style={styles.logininput} placeholder="Password"  onChangeText={newText => setPassword(newText)} secureTextEntry={securepassword} />
         <AntDesign onPress={() => setSecurepassword(!securepassword)} style={{ position: 'absolute', bottom: 230, left: 315 }} name={securepassword ? 'eye' : 'eyeo'} size={25} />
         
        
        
-        <TextInput style={styles.logininput} placeholder="Re-enter Your Password" secureTextEntry={securerepassword} />
+          <TextInput style={styles.logininput} placeholder="Re-enter Your Password" onChangeText={newText => setRepassword(newText)}  secureTextEntry={securerepassword} />
+          <Text style={{ color: 'red',position:'absolute' }}>{samepassworderror}</Text>
         <AntDesign onPress={() => setSecurerepassword(!securerepassword)} style={{ position: 'absolute', bottom: 168, left: 315 }} name={securerepassword ? 'eye' : 'eyeo'} size={25} />
         
        
 
-        <TouchableOpacity><Text style={styles.addtocart}>Register</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => {
+            if (password !== repassword) {
+              setSamepassworderror("Your password is not the same.")
+            } else {
+              fetch('https://api.october.com.mm/api/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  name: 'XYFHCGTE',
+                  email: 'gghjghbd@gmail.com',
+                  password: 'HGJG565',
+              
+                }),
+               
+              })
+                .then((response) => response.json())
+                .then(data => {
+                  console.log(data)
+                  
+                  let edata = Object.keys(data.errors);
+                  console.log(edata);
+                  if (edata.includes("email")) {
+                    console.log("Email issues")
+                  }
+                  if (edata.includes("password")) {
+                    console.log("Password issues")
+                  }
+                  if (edata.includes("password") && edata.includes("password")){
+                    console.log("Email issues");
+                    console.log("Email issues")
+                  }
+                  if ("errors" in data) {
+                    console.log(`Something is wrong. Possible Causes 
+              - Email is duplicate.
+              - Your password is less than 8 characters.
+              - Your password is not strong enough.
+              `);
+                setError(`Something is wrong. Possible Causes 
+              - Email is duplicate.
+              - Your password is less than 8 characters.
+              - Your password is not strong enough.
+              `);
+                    
+                    
+                    
+                  }
+                }
+              ).catch((e) => console.log(e))
+                  
+              
+            }
+           
+            
+        }}><Text style={styles.addtocart}>Register</Text></TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=> navigation.navigate('OTPScreen')}>
         
           <Text style={styles.googlebutton}>Continue with Google</Text>
           <AntDesign size={25} name="google"  style={{position:'absolute', bottom: 5, left: 25}} />

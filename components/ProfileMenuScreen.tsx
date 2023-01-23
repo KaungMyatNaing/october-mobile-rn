@@ -30,7 +30,7 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<
 
 type Props = {
   navigation: ProfileScreenNavigationProp;
-};
+};  
 //#endregion
 
 const ActionButton = (props : {iconname : string, color : string , name : string }) => {

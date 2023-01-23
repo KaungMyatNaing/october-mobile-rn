@@ -49,6 +49,7 @@ import SplashScreen from './components/SplashScreen';
 import LoginScreen from './components/LoginScreen';
 import RegisterScreen from './components/RegisterScreen';
 import OrderDetailScreen from './components/OrderDetailScreen';
+import OTPScreen from './components/OTPScreen';
 
 const StackDuck = createStackNavigator()
 
@@ -102,10 +103,13 @@ const App = () => {
      
       <StackDuck.Navigator>
         {/*<StackDuck.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} />*/}
-        <StackDuck.Screen options={{ headerShown: false }} name=" OrderDetailScreen" component={OrderDetailScreen} />
-        <StackDuck.Screen options={{ headerShown: false }} name="LoginScreen" component={LoginScreen} />
-        <StackDuck.Screen options={{ headerShown: false }} name="RegisterScreen" component={RegisterScreen} />
+
        
+        <StackDuck.Screen options={{ headerShown: false }} name="LoginScreen" component={LoginScreen} />
+         <StackDuck.Screen options={{ headerShown: false }} name="RegisterScreen" component={RegisterScreen} />
+        <StackDuck.Screen options={{ headerShown: false }} name=" OrderDetailScreen" component={OrderDetailScreen} />
+     
+       <StackDuck.Screen options={{ headerShown: false }} name="OTPScreen" component={OTPScreen} />
         <StackDuck.Screen options={{ headerShown: false }} name="TopBarReborn" component={TopBarReborn} />
         <StackDuck.Screen options={{ headerShown: false }} name="SearchScreen" component={SearchScreen} />
         <StackDuck.Screen options={{ headerShown: false }} name="HomeScreen" component={HomeScreen} />

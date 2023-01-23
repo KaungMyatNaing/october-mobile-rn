@@ -7,27 +7,63 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 const LoginScreen = ({ navigation }) => {
   let dont = `Don't have an account ? You can register here.`
   let reg = `register`
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [securepassword, setSecurepassword] = React.useState(true);
+  const [loginstatus, setLoginstatus] = React.useState(false);
+  const [errorstatus, setErrorstatus] = React.useState('');
+  const sumbitLogin = () => {
+    fetch('https://api.october.com.mm/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+    
+      }),
+     
+    })
+      .then((response) => response.json())
+      .then(data => {
+        console.log(data.success)
+        if (data.success === true) {
+          setErrorstatus('You are log in now !')
+          console.log('You are log in now !');
+          setLoginstatus(true);
+          navigation.navigate("TopBarReborn");
+        } else {
+          setErrorstatus('Something is wrong. Check your email or password.')
+          console.log('Something is wrong. Check your email or password.');
+        }
+        
+      }).catch((e) => console.log(e))
+        
+    console.log(errorstatus);
+  
+  }
   return (
     <View style={styles.container}>
       <Center>
         <Image source={require('../assets/images/logo.png')} style={{width:175,height: 50}} alt="logo"/>
-   
-    <Text>or</Text>
-
         <Text style={styles.titleheading}>Log In</Text>
         </Center>
       <Center>
-     <TextInput style={styles.logininput} placeholder="Email Address"/>
-        <TextInput style={styles.logininput} placeholder="Password" secureTextEntry={securepassword} />
-        <AntDesign onPress={() => setSecurepassword(!securepassword)} style={{ position: 'absolute', bottom: 100, left: 315 }} name={securepassword ? 'eye' : 'eyeo'} size={25} />
+        
+     <TextInput style={styles.logininput} placeholder="Email Address" onChangeText={(text)=> setEmail(text)}/>
+        <TextInput style={styles.logininput} placeholder="Password" secureTextEntry={securepassword} onChangeText={(text)=> setPassword(text)}/>
+        <AntDesign onPress={() => setSecurepassword(!securepassword)} style={{ position: 'absolute', bottom: 190, left: 315 }} name={securepassword ? 'eye' : 'eyeo'} size={25} />
         
        
-      
-        <TouchableOpacity><Text style={styles.addtocart}>Login</Text></TouchableOpacity>
+        <Text style={{position:'absolute',bottom: 280,color:'red'}}>{errorstatus}</Text>
+        <TouchableOpacity onPress={()=> sumbitLogin()}><Text style={styles.addtocart}>Login</Text></TouchableOpacity>
         <TouchableOpacity><Text style={{ padding: 2, borderBottomWidth: 1, marginTop: 15 }}>Forgot Password</Text></TouchableOpacity>
         <Text style={{marginTop: 30}}>If You don't have an account, create account </Text>
-        <TouchableOpacity onPress={() => { navigation.navigate("RegisterScreen"); console.log("Register page") }}><Text style={styles.smallbutton}>Register</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => {
+        
+          navigation.navigate("RegisterScreen");
+          console.log("Register page")
+
+        }}><Text style={styles.smallbutton}>Register</Text></TouchableOpacity>
        </Center>
     </View>
   )
