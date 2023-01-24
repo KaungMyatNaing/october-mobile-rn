@@ -45,10 +45,10 @@ const SwiperComponent = (props: { title: string, image: string, btn_text: string
     fetch(`https://api.october.com.mm/api/banners/`)
     .then((response) => response.json() )
       .then((data) => { setBanneritems(data.data.banner_sliders); setErrorlog(true) }).catch(()=>setErrorlog(false));
-  },[banneritems])
+  },[])
   return (
     <Swiper style={styles.wrapper} showsButtons loop={false} dot={<View style={{ backgroundColor: 'pink', padding: 5, marginLeft: 5, borderRadius: 10 }}></View>} activeDot={<View style={{ backgroundColor: 'white', padding: 5, marginLeft: 5, borderRadius: 10 }}></View>} >
-      {errorlog ? <Text>Loading</Text> : banneritems && banneritems.map((item,index) => (
+      {banneritems.map((item,index) => (
            <View testID="Hello" style={styles.slide1} key={index}>
            <ImageBackground source={{ uri: `https://www.api.octoberecommerce.duckdns.org/${item.image}` }} style={{ width: '100%', height: '100%' }}>
              <View style={{paddingTop: 50, paddingLeft: 50}}>

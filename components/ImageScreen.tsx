@@ -1,10 +1,11 @@
 import { Image,View,TouchableOpacity,Text } from "react-native"
-const ImageScreen = ({navigation}) => {
+const ImageScreen = ({ navigation, route }) => {
+  const { uri } = route.params;
   return (
     <View>
       
       <TouchableOpacity  onPress={()=> navigation.goBack()}>
-      <Image style={{ width: '100%', height: '100%'}} source={{ uri: "https://cataas.com/cat" }} />
+      <Image style={{ width: '100%', height: '100%'}} source={{ uri: uri }} />
         </TouchableOpacity>
     
       
