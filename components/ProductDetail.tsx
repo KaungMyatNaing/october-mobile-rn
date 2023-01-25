@@ -4,7 +4,8 @@ import { VStack, HStack, Button, IconButton, Icon, Text, NativeBaseProvider, Cen
 import { SafeAreaView } from "react-native-safe-area-context";
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import { StoreContext } from "./StoreContext";
+ 
 const reviewData = [
   {
     id: 1,
@@ -40,11 +41,24 @@ const thumbData = [
     src : require('../assets/images/s1.png')
   }
 ]
-const ProductDetail = ({ navigation , route }) => {
+const ProductDetail = ({ navigation, route }) => {
+  const [cart, setCart] = React.useContext(StoreContext)
+  
   const [fullimage, setFullimage] = React.useState(false);
   const [resp, setResp] = React.useState({});
   const [error, setError] = React.useState(true);
   const { id } = route.params;
+  const [dqty, setDqty] = React.useState(1);
+  const [minus, setMinus] = React.useState(false);
+
+  const qtyControl = (type : string) => {
+    if (type == 'i') {
+      setDqty(old => old + 1)
+    }
+    if (type == 'd') {
+      setDqty(old => old - 1)
+    }
+  }
   console.log(id);
   React.useEffect(() => {
     fetch(`https://api.october.com.mm/api/products/detail/${id}`).then((response) => response.json())
@@ -173,11 +187,43 @@ const ProductDetail = ({ navigation , route }) => {
           <HStack  justifyContent='space-between' alignItems='center' space={5}>
   
             <HStack justifyContent='space-between' alignItems='center' space={25}>
-              <TouchableOpacity><AntDesign size={20} name='plus' style={styles.iconbutton} /></TouchableOpacity>
-              <Text>1</Text>
-              <TouchableOpacity><AntDesign size={20} name='minus' style={styles.iconbutton}/></TouchableOpacity>
+              <TouchableOpacity onPress={()=> qtyControl('i')}><AntDesign size={20} name='plus' style={styles.iconbutton}/></TouchableOpacity>
+              <Text>{dqty}</Text>
+              <TouchableOpacity onPress={() => {
+                if (dqty == 1) {
+                  setMinus(true);
+                } else {
+                  setMinus(false)
+                  qtyControl('d')
+                }
+                
+              }}><AntDesign size={20} name='minus' style={minus ? styles.iconbuttondisable : styles.iconbutton} disable={minus} /></TouchableOpacity>
             </HStack>
-            <TouchableOpacity><Text style={styles.addtocart}>Add To Cart</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+             
+              setMinus(false);
+              if (cart.length == 0) {
+                const nData = [{ id: cart.length + 1, item_id: resp.id, item_name: resp.name, brand_name: resp.brand[0].name, qty: dqty, price: resp.price }].sort((a, b) => a.id - b.id);
+                setCart(nData);
+              } else {
+                //bug here
+                const checkExist = cart.filter(item => item.item_id == resp.id);
+                if (checkExist.length > 0) {
+                  const gData = cart.filter((data) => data.item_id != resp.id)
+                  checkExist[0].qty += dqty;
+                  const nData = [gData, checkExist[0]].sort((a, b) => a.id - b.id);
+                  setCart(nData);
+                  console.log('already have test'+nData.map(i => console.log(i.id)));
+
+                } else {
+                  const nData = [...cart, { id: cart.length == undefined ? 1 : cart.length + 1, item_id: resp.id, item_name: resp.name, brand_name: resp.brand[0].name, qty: dqty, price: resp.price }].sort((a, b) => a.id - b.id);
+                  setCart(nData);
+                }
+             
+              
+              }
+            }
+             }><Text style={styles.addtocart}>Add To Cart</Text></TouchableOpacity>
           </HStack>
   
         
@@ -198,6 +244,13 @@ const styles = StyleSheet.create({
     padding:10,
     borderRadius: 10,
     backgroundColor: '#F4DEE3'
+
+  },
+  iconbuttondisable: {
+    padding:10,
+    borderRadius: 10,
+    backgroundColor: '#F4DEE3',
+    opacity: 0.5
 
   },
   addtocart: {

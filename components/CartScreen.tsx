@@ -2,19 +2,24 @@ import { HStack,Box ,Image, VStack,ScrollView,Text,Input} from "native-base"
 import {TouchableOpacity,StyleSheet } from "react-native"
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import CartItem from "./CartItem";
-
+import React from "react";
+import { StoreContext } from "./StoreContext";
 
 const CartScreen = () => {
+  const [cart, setCart] = React.useContext(StoreContext)
+  
   return (
     <>
       <Text fontSize='2xl' p='3'>My Cart</Text>
       <ScrollView>
-      <Box width='100%' h='100%' justifyContent='center' alignItems='center' flex={1} paddingBottom='250' paddingTop='15'> 
-          <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem/>
+        <Box width='100%' h='100%' justifyContent='center' alignItems='center' flex={1} paddingBottom='250' paddingTop='15'> 
+          {cart.map((item,index) => 
+            (
+            <CartItem item_id={item.item_id} item_name={item.item_name} brand_name={item.brand_name} qty={item.qty} price={item.price} key={item.id}  />
+           )
+          )}
+         
+          
       </Box>
       </ScrollView>
       <Box  borderTopWidth='1' borderTopColor='#F1ECEE' style={{position: 'absolute',bottom: 75, left: 0, right: 0,paddingHorizontal: 15,paddingBottom: 15}} backgroundColor='#FEF5F6' >

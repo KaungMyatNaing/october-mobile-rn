@@ -9,7 +9,8 @@
  */
 
 import {Stack, Input, Container,Center,Image,Button,Box,ScrollView} from 'native-base';
-import React, {type PropsWithChildren} from 'react';
+import React, { type PropsWithChildren } from 'react';
+import { createContext, useContext } from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -50,6 +51,7 @@ import LoginScreen from './components/LoginScreen';
 import RegisterScreen from './components/RegisterScreen';
 import OrderDetailScreen from './components/OrderDetailScreen';
 import OTPScreen from './components/OTPScreen';
+import { StoreContext } from './components/StoreContext';
 
 const StackDuck = createStackNavigator()
 
@@ -90,12 +92,13 @@ const Product = () => {
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-
+  const [cart, setCart] = React.useState([].sort((a,b)=> a.id - b.id));
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-
+  
   return (
+    <StoreContext.Provider value={[cart, setCart]}>
     <NavigationContainer>
     
     
@@ -119,6 +122,7 @@ const App = () => {
      
     
       </NavigationContainer>
+      </StoreContext.Provider>
   );
 };
 
