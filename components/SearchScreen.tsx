@@ -4,7 +4,7 @@ import IonIcons from 'react-native-vector-icons/Ionicons';
 const SearchScreen = ({navigation}) => {
   return (
     <>
-      <HStack space={4} marginY={2} marginX={2}>
+      <HStack space={4} marginY={2} marginX={2} justifyContent='center' alignItems='center'>
         <TouchableOpacity onPress={() => navigation.goBack()} >
           <IonIcons name='chevron-back' size={32} />
         </TouchableOpacity>

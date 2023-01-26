@@ -15,15 +15,15 @@ const CatagoryPage = () => {
           <Text>Placeholder Here</Text>
         </HStack>
         <HStack space={2}>
-          <CatagoryItem name="Lips"/>
-          <CatagoryItem name="Eyes"/>
+          <CatagoryItem name="Lips" img="lip"/>
+          <CatagoryItem name="Eyes" img="eye"/>
         </HStack>
         <HStack space={2} marginTop={15}>
-          <CatagoryItem name="Body"/>
-          <CatagoryItem name="Face"/>
+          <CatagoryItem name="Body" img="body"/>
+          <CatagoryItem name="Face" img="face"/>
         </HStack>
         <HStack  marginTop={15}>
-          <CatagoryItem name="Hair" />
+          <CatagoryItem name="Hair" img="hair"/>
         </HStack>
        
           </Box>

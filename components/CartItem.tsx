@@ -62,7 +62,7 @@ const CartItem = (props: { item_id: string, item_name: string, brand_name: strin
         </TouchableOpacity>
       </HStack>
       <HStack paddingTop='2'>
-      <Image source={{uri : "https://cataas.com/cat"}} alt='sexo' size='lg' />
+      <Image source={require('../assets/images/p1.png')} alt='sexo' size='lg' />
         <VStack>
            
             <HStack pl='3' justifyContent='space-between' alignItems='center' space={38}><Text fontFamily='GothamPro'>{props.brand_name}</Text><Text fontFamily='GothamPro-Bold'>{props.price * props.qty} MMK</Text></HStack>
@@ -70,7 +70,7 @@ const CartItem = (props: { item_id: string, item_name: string, brand_name: strin
             <HStack pl='3' space={3}><Text  fontFamily='GothamPro'>type</Text><Text  fontFamily='GothamPro'>XL</Text></HStack>
             
           </VStack>
-          <HStack justifyContent='space-around' alignItems='center' space={1}>
+          <HStack justifyContent='center' alignItems='center' space={1}>
             <TouchableOpacity onPress={()=>qtyIncrease(props.item_id)}><View style={{display:'flex', justifyContent:'center',alignItems:'center', borderWidth: 1, padding: 3,borderRadius: 25}}><AntDesign size={20} name='plus' color='black'/></View></TouchableOpacity>
             <Text fontFamily='GothamPro'>{props.qty}</Text>
             <TouchableOpacity onPress={()=>qtyDecrease(props.item_id)}><View style={{display:'flex', justifyContent:'center',alignItems:'center', borderWidth: 1, padding: 3,borderRadius: 25}}><AntDesign size={20} name='minus' color='black'/></View></TouchableOpacity>

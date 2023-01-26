@@ -5,6 +5,7 @@ import React from "react"
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import { useToast } from 'native-base';
+import { StoreContext } from "./StoreContext";
 const RegisterScreen = ({ navigation }) => {
   const [securepassword, setSecurepassword] = React.useState(true);
   const [securerepassword, setSecurerepassword] = React.useState(true);
@@ -13,13 +14,22 @@ const RegisterScreen = ({ navigation }) => {
   const [repassword, setRepassword] = React.useState('');
   const [samepassworderror, setSamepassworderror] = React.useState('');
   const [error, setError] = React.useState('');
+  const [otpcode, setOtpcode] = React.useContext(StoreContext)
+  const [registerlock, setRegisterlock] = React.useState(false);
+
+  
   React.useEffect(() => {
+    
+    
+  }, [])
+  
+  const registerUser = () => {
     fetch('https://api.october.com.mm/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: 'XYFHCGTE',
-        email: 'gghjghbd@gmail.com',
+        email: 'gghjjjkjkghjjgbvc89879879666666nghbd@gmail.com',
         password: 'HGJG565',
     
       }),
@@ -28,20 +38,23 @@ const RegisterScreen = ({ navigation }) => {
       .then((response) => response.json())
       .then(data => {
         console.log(data)
+        setOtpcode(data.data.otp_code);
         if ("errors" in data) {
           console.log(`Something is wrong. Possible Causes 
     - Email is duplicate.
     - Your password is less than 8 characters.
     - Your password is not strong enough.
     `);
-     
+          setRegisterlock(false);
+          
+        } else {
+          setRegisterlock(true);
           
         }
       }
     ).catch((e) => console.log(e))
-        
-    
-  },[])
+       
+  }
   return (
     <>
     <View style={styles.container}>
@@ -71,60 +84,70 @@ const RegisterScreen = ({ navigation }) => {
         
        
 
-          <TouchableOpacity onPress={() => {
-            if (password !== repassword) {
-              setSamepassworderror("Your password is not the same.")
-            } else {
-              fetch('https://api.october.com.mm/api/auth/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  name: 'XYFHCGTE',
-                  email: 'gghjghbd@gmail.com',
-                  password: 'HGJG565',
+          <TouchableOpacity disabled={registerlock} onPress={() => {
+            setRegisterlock(true);
+            //if (password !== repassword) {
+            //  setSamepassworderror("Your password is not the same.")
+            //} else {
+            fetch('https://api.october.com.mm/api/auth/register', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                name: 'XYFHCGTE',
+                email: 'gghjgjjkkjhmnbvvvvnooybhvghvv65768657575764397542166vkhkjhbvaqhbd@gmail.com',
+                password: 'HGJG565',
               
-                }),
+              }),
                
-              })
-                .then((response) => response.json())
-                .then(data => {
-                  console.log(data)
+            })
+              .then((response) => response.json())
+              .then(data => {
+                setRegisterlock(false);
+                console.log(data)
                   
-                  let edata = Object.keys(data.errors);
-                  console.log(edata);
-                  if (edata.includes("email")) {
-                    console.log("Email issues")
-                  }
-                  if (edata.includes("password")) {
-                    console.log("Password issues")
-                  }
-                  if (edata.includes("password") && edata.includes("password")){
-                    console.log("Email issues");
-                    console.log("Email issues")
-                  }
-                  if ("errors" in data) {
-                    console.log(`Something is wrong. Possible Causes 
+                //  let edata = Object.keys(data.errors);
+                //  console.log(edata);
+                //   if (edata.includes("email")) {
+                //    console.log("Email issues")
+                //  }
+                //  else if (edata.includes("password")) {
+                //    console.log("Password issues")
+                //  }
+                //  else if (edata.includes("password") && edata.includes("password")) {
+                //    console.log("Email issues");
+                //    console.log("Email issues")
+                //  }
+                if ("errors" in data) {
+                  console.log(`Something is wrong. Possible Causes 
               - Email is duplicate.
               - Your password is less than 8 characters.
               - Your password is not strong enough.
               `);
-                setError(`Something is wrong. Possible Causes 
+                  setError(`Something is wrong. Possible Causes 
               - Email is duplicate.
               - Your password is less than 8 characters.
               - Your password is not strong enough.
               `);
-                    
-                    
-                    
-                  }
                 }
-              ).catch((e) => console.log(e))
-                  
+                //      
+                //      
+                //      
+                else {
+                  setOtpcode(data.data.otp_code);
+                  console.log("OTP Code Set")
+                  navigation.navigate('OTPScreen')
+                      
+                }
+              }
+            
               
-            }
+              
+              ).catch((e) => console.log(e))
+           
+          }
            
             
-        }}><Text style={styles.addtocart}>Register</Text></TouchableOpacity>
+        }><Text style={registerlock ? styles.addtocartdisable : styles.addtocart}>Register</Text></TouchableOpacity>
 
         <TouchableOpacity onPress={()=> navigation.navigate('OTPScreen')}>
         
@@ -166,6 +189,18 @@ const styles = StyleSheet.create({
     textAlign:'center'
     
   },
+  addtocartdisable: {
+    padding: 10,
+    width: 300,
+    backgroundColor: '#FF6195',
+    borderRadius: 15,
+    color: '#FFEDF5',
+    marginTop: 15,
+    fontFamily: 'GothamPro-Bold',
+    textAlign: 'center',
+    opacity: 0.6
+    
+  },
   googlebutton: {
     padding: 10,
     width: 300,
@@ -199,6 +234,7 @@ const styles = StyleSheet.create({
     fontFamily: 'GothamPro-Bold',
     textAlign:'center'
   },
+
   logininput: {
      padding: 10,
     width: '80%',

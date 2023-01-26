@@ -52,7 +52,8 @@ import RegisterScreen from './components/RegisterScreen';
 import OrderDetailScreen from './components/OrderDetailScreen';
 import OTPScreen from './components/OTPScreen';
 import { StoreContext } from './components/StoreContext';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import CheckOutScreen from './components/CheckOutScreen';
 const StackDuck = createStackNavigator()
 
 const Section: React.FC<
@@ -92,17 +93,20 @@ const Product = () => {
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const [cart, setCart] = React.useState([].sort((a,b)=> a.id - b.id));
+  const [cart, setCart] = React.useState([].sort((a, b) => a.id - b.id));
+  const [otpcode, setOtpcode] = React.useState('');
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
   
+  
   return (
-    <StoreContext.Provider value={[cart, setCart]}>
+    <StoreContext.Provider value={[cart, setCart,otpcode,setOtpcode]}>
     <NavigationContainer>
     
     
-      {/*<BottomBarRework/>*/}
+        {/*<BottomBarRework/>*/}
+       
      
       <StackDuck.Navigator>
         {/*<StackDuck.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} />*/}
@@ -110,14 +114,23 @@ const App = () => {
        
         {/*<StackDuck.Screen options={{ headerShown: false }} name="LoginScreen" component={LoginScreen} />
          <StackDuck.Screen options={{ headerShown: false }} name="RegisterScreen" component={RegisterScreen} />
-        <StackDuck.Screen options={{ headerShown: false }} name=" OrderDetailScreen" component={OrderDetailScreen} />
+      
      
        <StackDuck.Screen options={{ headerShown: false }} name="OTPScreen" component={OTPScreen} />*/}
+         
+          {/*<StackDuck.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} />*/}
+        
+          {/*<StackDuck.Screen options={{ headerShown: false }} name="LoginScreen" component={LoginScreen} />
+          <StackDuck.Screen options={{ headerShown: false }} name="RegisterScreen" component={RegisterScreen} />
+          <StackDuck.Screen options={{ headerShown: false }} name="OTPScreen" component={OTPScreen} />*/}
         <StackDuck.Screen options={{ headerShown: false }} name="TopBarReborn" component={TopBarReborn} />
-        <StackDuck.Screen options={{ headerShown: false }} name="SearchScreen" component={SearchScreen} />
+          <StackDuck.Screen options={{ headerShown: false }} name="SearchScreen" component={SearchScreen} />
+          <StackDuck.Screen options={{ headerShown: false }} name=" OrderDetailScreen" component={OrderDetailScreen} />
         <StackDuck.Screen options={{ headerShown: false }} name="HomeScreen" component={HomeScreen} />
         <StackDuck.Screen options={{ headerShown: false }} name="ImageScreen" component={ImageScreen} />
-        <StackDuck.Screen options = {{headerShown: false}} name="ProductDetail" component={ProductDetail}/>
+          <StackDuck.Screen options={{ headerShown: false }} name="ProductDetail" component={ProductDetail} />
+          <StackDuck.Screen options={{ headerShown: false }} name="CheckOutScreen" component={CheckOutScreen} />
+        
         </StackDuck.Navigator>
      
     

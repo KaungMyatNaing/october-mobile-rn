@@ -1,13 +1,14 @@
 import { HStack,Box ,Image, VStack,ScrollView,Text,Input} from "native-base"
-import {TouchableOpacity,StyleSheet } from "react-native"
+import {TouchableOpacity,StyleSheet,View } from "react-native"
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import CartItem from "./CartItem";
 import React from "react";
 import { StoreContext } from "./StoreContext";
+import { NavigationContainer } from "@react-navigation/native";
 
-const CartScreen = () => {
+const CartScreen = ({ navigation }) => {
   const [cart, setCart] = React.useContext(StoreContext)
-  
+  const [isopen, setIsopen] = React.useState(false);
   return (
     <>
       <Text fontSize='2xl' p='3'>My Cart</Text>
@@ -22,16 +23,17 @@ const CartScreen = () => {
           
       </Box>
       </ScrollView>
-      <Box  borderTopWidth='1' borderTopColor='#F1ECEE' style={{position: 'absolute',bottom: 75, left: 0, right: 0,paddingHorizontal: 15,paddingBottom: 15}} backgroundColor='#FEF5F6' >
+      <Box  borderTopWidth='1' borderTopColor='#F1ECEE' style={{position: 'absolute',bottom: isopen ? 75 : -75, left: 0, right: 0,paddingHorizontal: 15,paddingBottom: 15}} backgroundColor='#FEF5F6' >
       
-        <VStack  space={5} pt='28'>
+        <VStack space={5} pt='28'>
+          <HStack justifyContent='center' alignItems='center'><TouchableOpacity onPress={() => setIsopen(!isopen)}><AntDesign size={25} name={isopen ? 'caretdown' : 'caretup'} /></TouchableOpacity></HStack>
 
          
           <HStack justifyContent='space-around' alignItems='center' px={2} >
          
             <Text style={{fontFamily: 'GothamPro-Bold'}}>Promo Code</Text>
             <Input width={95} placeholder="Promo"></Input>
-            <TouchableOpacity><Text style={styles.addtocart}>Apply</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=> setIsopen(!isopen)}><Text style={styles.addtocart}>Apply</Text></TouchableOpacity>
             
           </HStack>
           <HStack justifyContent='space-between' alignItems='center' px={2}>
@@ -39,7 +41,16 @@ const CartScreen = () => {
               <HStack space={3}><Text  style={{fontFamily: 'GothamPro-Bold'}}>Discount Price</Text><Text>25000 MMK</Text></HStack>
               <HStack  space={3}><Text  style={{fontFamily: 'GothamPro-Bold'}}>Total</Text><Text>150000 MMK</Text></HStack>
             </VStack>
-            <TouchableOpacity><Text style={styles.addtocart}>Check Out</Text></TouchableOpacity>
+            <TouchableOpacity
+              
+              onPress={() => {
+                if (cart.length == 0) {
+                
+                } else {
+                  navigation.navigate("OrderDetailScreen");
+                }
+              }}
+            ><Text style={styles.addtocart}>Check Out</Text></TouchableOpacity>
           </HStack>
           
          

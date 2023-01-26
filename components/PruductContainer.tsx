@@ -60,7 +60,7 @@ const PruductContainer = (props: { name: string, navigation: any, route: string,
           }}>*/}
           <Container style={{ flexDirection: 'row' }}>
             {
-              fcata && fcata.map((item, index) => (
+              newarrivals.map((item, index) => (
                 <Pruduct navigation={props.navigation} route={props.route} name={item.name} price={item.price} cover_image={item.cover_image} id={item.id} key={index} />
               ))
             }
