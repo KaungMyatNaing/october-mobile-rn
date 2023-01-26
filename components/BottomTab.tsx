@@ -93,7 +93,7 @@ const BottomTab = () => {
                 marginBottom: 10,
                 color: focused ? '#E91E63' : '#616161',
               }}>
-              Favourites
+              Fav
             </Text>
           ),
           tabBarIcon: ({focused}) => (

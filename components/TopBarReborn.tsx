@@ -59,7 +59,7 @@ function TopBarReborn() {
                   name="search1"
                   color="black"
                   size={30}
-                  onPress={() => navigation.navigate('CheckOutScreen')}
+                  onPress={() => navigation.navigate('SearchScreen')} //CheckOutScreen
                 />
               </TouchableOpacity>
               <TouchableOpacity>
