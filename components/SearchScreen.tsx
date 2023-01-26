@@ -44,6 +44,7 @@ const SearchScreen = ({navigation}) => {
       {/* address card  */}
       <ScrollView h="80">
         <Center>
+          {/* address card  */}
           <Container
             h="auto"
             w="100%"
