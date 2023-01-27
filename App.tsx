@@ -54,6 +54,7 @@ import SearchScreen from './components/SearchScreen';
 import HomeScreen from './components/HomeScreen';
 import ImageScreen from './components/ImageScreen';
 import CheckOutScreen from './components/CheckOutScreen';
+import AddressContextProvider from './components/context/AddressContext';
 
 const StackDuck = createStackNavigator();
 
@@ -103,43 +104,47 @@ const App = () => {
   };
 
   return (
-    <NavigationContainer>
-      {/*<BottomBarRework/>*/}
+    <AddressContextProvider>
+      <NavigationContainer>
+        {/*<BottomBarRework/>*/}
 
-      <StackDuck.Navigator>
-        <StackDuck.Screen
-          options={{headerShown: false}}
-          name="TopBarReborn"
-          component={TopBarReborn}
-        />
-        <StackDuck.Screen
-          options={{headerShown: false}}
-          name="SearchScreen"
-          component={SearchScreen}
-        />
-        {/* checkout  */}
-        <StackDuck.Screen
-          options={{headerShown: false}}
-          name="CheckOutScreen"
-          component={CheckOutScreen}
-        />
-        <StackDuck.Screen
-          options={{headerShown: false}}
-          name="HomeScreen"
-          component={HomeScreen}
-        />
-        <StackDuck.Screen
-          options={{headerShown: false}}
-          name="ImageScreen"
-          component={ImageScreen}
-        />
-        <StackDuck.Screen
-          options={{headerShown: false}}
-          name="ProductDetail"
-          component={ProductDetail}
-        />
-      </StackDuck.Navigator>
-    </NavigationContainer>
+        <StackDuck.Navigator>
+          <StackDuck.Screen
+            options={{headerShown: false}}
+            name="TopBarReborn"
+            component={TopBarReborn}
+          />
+          <StackDuck.Screen
+            options={{headerShown: false}}
+            name="SearchScreen"
+            component={SearchScreen}
+          />
+          {/* checkout  */}
+
+          <StackDuck.Screen
+            options={{headerShown: false}}
+            name="CheckOutScreen"
+            component={CheckOutScreen}
+          />
+
+          <StackDuck.Screen
+            options={{headerShown: false}}
+            name="HomeScreen"
+            component={HomeScreen}
+          />
+          <StackDuck.Screen
+            options={{headerShown: false}}
+            name="ImageScreen"
+            component={ImageScreen}
+          />
+          <StackDuck.Screen
+            options={{headerShown: false}}
+            name="ProductDetail"
+            component={ProductDetail}
+          />
+        </StackDuck.Navigator>
+      </NavigationContainer>
+    </AddressContextProvider>
   );
 };
 

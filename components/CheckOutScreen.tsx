@@ -22,10 +22,12 @@ import {
   Pressable,
   View,
 } from 'native-base';
-import React from 'react';
+import React, {useContext} from 'react';
 import {TouchableOpacity} from 'react-native';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import AntIcon from 'react-native-vector-icons/AntDesign';
+import {useToast} from 'native-base';
+import {AddressContext} from './context/AddressContext';
 // import { launchImageLibrary } from 'react-native-image-picker';
 
 // choose payment radio components
@@ -308,10 +310,13 @@ const PaymentMethod = () => {
 
 // main page checkout screen
 const CheckOutScreen = ({navigation}) => {
+  const toast = useToast();
   const [showModal, setShowModal] = React.useState<boolean>(false);
   const [showAddressCard, setShowAddressCard] = React.useState<boolean>(false);
   const [showModalAddress, setShowModalAddress] =
     React.useState<boolean>(false);
+
+  const [selectedAddress, setSelectedAddress] = React.useState({});
 
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -319,10 +324,25 @@ const CheckOutScreen = ({navigation}) => {
 
   const cancelRef = React.useRef(null);
 
-  const handleShowAddresCard = () => {
+  // fetch all address
+
+  const {addressBooks, handleChange, handleAddNewAddress} =
+    useContext(AddressContext);
+
+  const handleAddNewAddressContext = () => {
+    handleAddNewAddress();
+    setShowModal(false);
+  };
+
+  // selected address
+
+  const handleShowAddresCard = id => {
     setShowAddressCard(true);
     setShowModalAddress(false);
+    setSelectedAddress(addressBooks.find(address => address.id === id));
+    console.log(selectedAddress);
   };
+
   return (
     <ScrollView bgColor={'white'}>
       <HStack space={4} marginY={2} marginX={2}>
@@ -368,26 +388,39 @@ const CheckOutScreen = ({navigation}) => {
                         placeholder="Full Name"
                         rounded="xl"
                         fontSize={'md'}
+                        onChangeText={text => handleChange('fullName', text)}
                       />
                     </FormControl>
                     <FormControl mt="2">
-                      <Input placeholder="Phone" rounded="xl" fontSize={'md'} />
+                      <Input
+                        placeholder="Phone"
+                        rounded="xl"
+                        fontSize={'md'}
+                        onChangeText={text => handleChange('phone', text)}
+                      />
                     </FormControl>
                     <FormControl mt="2">
                       <Input
                         placeholder="Region"
                         rounded="xl"
                         fontSize={'md'}
+                        onChangeText={text => handleChange('region', text)}
                       />
                     </FormControl>
                     <FormControl mt="2">
-                      <Input placeholder="City" rounded="xl" fontSize={'md'} />
+                      <Input
+                        placeholder="City"
+                        rounded="xl"
+                        fontSize={'md'}
+                        onChangeText={text => handleChange('city', text)}
+                      />
                     </FormControl>
                     <FormControl mt="2">
                       <Input
                         placeholder="Township"
                         rounded="xl"
                         fontSize={'md'}
+                        onChangeText={text => handleChange('township', text)}
                       />
                     </FormControl>
                     <FormControl mt="2">
@@ -395,6 +428,7 @@ const CheckOutScreen = ({navigation}) => {
                         placeholder="Building No."
                         rounded="xl"
                         fontSize={'md'}
+                        onChangeText={text => handleChange('buildingNo', text)}
                       />
                     </FormControl>
                     <FormControl mt="2">
@@ -402,10 +436,16 @@ const CheckOutScreen = ({navigation}) => {
                         placeholder="Address"
                         rounded="xl"
                         fontSize={'md'}
+                        onChangeText={text => handleChange('address', text)}
                       />
                     </FormControl>
                     <FormControl mt="2" mb={'20'}>
-                      <Input placeholder="Type" rounded="xl" fontSize={'md'} />
+                      <Input
+                        placeholder="Type"
+                        rounded="xl"
+                        fontSize={'md'}
+                        onChangeText={text => handleChange('type', text)}
+                      />
                     </FormControl>
                   </ScrollView>
                 </Modal.Body>
@@ -423,7 +463,7 @@ const CheckOutScreen = ({navigation}) => {
                       backgroundColor={'#FF6195'}
                       borderRadius={'lg'}
                       onPress={() => {
-                        setShowModal(false);
+                        handleAddNewAddressContext();
                       }}>
                       Save
                     </Button>
@@ -447,97 +487,116 @@ const CheckOutScreen = ({navigation}) => {
                 <ScrollView h="96">
                   <Modal.Body>
                     {/* address card  */}
+                    {addressBooks.map(address => {
+                      return (
+                        <Pressable
+                          h="auto"
+                          w="100%"
+                          rounded="lg"
+                          shadow={0}
+                          mb={2}
+                          key={address.id}
+                          onPress={() => handleShowAddresCard(address.id)}
+                          backgroundColor="gray.200">
+                          <HStack
+                            space={'32'}
+                            m={3}
+                            justifyContent={'center'}
+                            alignItems={'center'}>
+                            <Heading
+                              size="md"
+                              style={{fontFamily: 'Gotham Pro'}}>
+                              {address.is_default === 1 ? 'Default' : ''}{' '}
+                              Billing Address
+                            </Heading>
+                            <HStack
+                              space={1}
+                              justifyContent={'center'}
+                              alignItems={'center'}>
+                              {address.is_default !== 1 && (
+                                <IonIcons
+                                  name="ios-checkbox-outline"
+                                  size={25}
+                                  style={{color: 'darkgreen'}}
+                                  onPress={() =>
+                                    handleDefaultAddress(address.id)
+                                  }
+                                />
+                              )}
 
-                    <Pressable
-                      h="auto"
-                      w="100%"
-                      rounded="lg"
-                      shadow={0}
-                      mb={2}
-                      onPress={handleShowAddresCard}
-                      backgroundColor="gray.200">
-                      <HStack
-                        space={12}
-                        m={3}
-                        justifyContent={'center'}
-                        alignItems={'center'}>
-                        <Heading size="md" style={{fontFamily: 'Gotham Pro'}}>
-                          Default Billing Address
-                        </Heading>
-                        <HStack
-                          space={1}
-                          justifyContent={'center'}
-                          alignItems={'center'}>
-                          <IonIcons
-                            name="ios-checkbox-outline"
-                            size={25}
-                            style={{color: 'darkgreen'}}
+                              {address.is_default !== 1 && (
+                                <AntIcon
+                                  name="delete"
+                                  size={25}
+                                  style={{color: 'red'}}
+                                  onPress={() => setIsOpen(!isOpen)}
+                                />
+                              )}
+
+                              {/* delete dialog  */}
+                              <AlertDialog
+                                leastDestructiveRef={cancelRef}
+                                isOpen={isOpen}
+                                onClose={onClose}>
+                                <AlertDialog.Content>
+                                  <AlertDialog.CloseButton />
+                                  <AlertDialog.Header>
+                                    Delete Address
+                                  </AlertDialog.Header>
+                                  <AlertDialog.Body>
+                                    This will remove the address. This action
+                                    cannot be reversed. Deleted data can not be
+                                    recovered.
+                                  </AlertDialog.Body>
+                                  <AlertDialog.Footer>
+                                    <Button.Group space={2}>
+                                      <Button
+                                        variant="unstyled"
+                                        colorScheme="coolGray"
+                                        onPress={onClose}
+                                        ref={cancelRef}>
+                                        Cancel
+                                      </Button>
+                                      <Button
+                                        colorScheme="danger"
+                                        onPress={() =>
+                                          handleDeleteAddress(address.id)
+                                        }>
+                                        Delete
+                                      </Button>
+                                    </Button.Group>
+                                  </AlertDialog.Footer>
+                                </AlertDialog.Content>
+                              </AlertDialog>
+                            </HStack>
+                          </HStack>
+                          <Divider
+                            _light={{
+                              bg: 'muted.800',
+                            }}
+                            _dark={{
+                              bg: 'muted.50',
+                            }}
                           />
-
-                          <AntIcon
-                            name="delete"
-                            size={25}
-                            style={{color: 'red'}}
-                            onPress={() => setIsOpen(!isOpen)}
-                          />
-
-                          {/* delete dialog  */}
-                          <AlertDialog
-                            leastDestructiveRef={cancelRef}
-                            isOpen={isOpen}
-                            onClose={onClose}>
-                            <AlertDialog.Content>
-                              <AlertDialog.CloseButton />
-                              <AlertDialog.Header>
-                                Delete Address
-                              </AlertDialog.Header>
-                              <AlertDialog.Body>
-                                This will remove the address. This action cannot
-                                be reversed. Deleted data can not be recovered.
-                              </AlertDialog.Body>
-                              <AlertDialog.Footer>
-                                <Button.Group space={2}>
-                                  <Button
-                                    variant="unstyled"
-                                    colorScheme="coolGray"
-                                    onPress={onClose}
-                                    ref={cancelRef}>
-                                    Cancel
-                                  </Button>
-                                  <Button
-                                    colorScheme="danger"
-                                    onPress={onClose}>
-                                    Delete
-                                  </Button>
-                                </Button.Group>
-                              </AlertDialog.Footer>
-                            </AlertDialog.Content>
-                          </AlertDialog>
-                        </HStack>
-                      </HStack>
-                      <Divider
-                        _light={{
-                          bg: 'muted.800',
-                        }}
-                        _dark={{
-                          bg: 'muted.50',
-                        }}
-                      />
-                      <VStack space={2} p={3}>
-                        <Text bold fontSize={18}>
-                          Myanmar Web Creator
-                        </Text>
-                        <Text fontSize={18} style={{color: 'gray'}}>
-                          Yangon, Myanmar
-                        </Text>
-                        <Text fontSize={18} style={{color: 'gray'}}>
-                          No.624, Gankgaw Yeik Thar Street 16/4
-                        </Text>
-                        <Text fontSize={18} style={{color: 'gray'}}>
-                          0900000000
-                        </Text>
-                      </VStack>
-                    </Pressable>
+                          <VStack space={2} p={3}>
+                            <Text bold fontSize={18}>
+                              {address.full_name}
+                            </Text>
+                            <Text fontSize={18} style={{color: 'gray'}}>
+                              {address.region}, {address.township}
+                            </Text>
+                            <Text fontSize={18} style={{color: 'gray'}}>
+                              {address.address}
+                            </Text>
+                            <Text
+                              fontSize={18}
+                              style={{color: 'gray', letterSpacing: 2}}>
+                              {address.phone}
+                            </Text>
+                          </VStack>
+                        </Pressable>
+                      );
+                    })}
                   </Modal.Body>
                 </ScrollView>
               </Modal.Content>
@@ -551,7 +610,7 @@ const CheckOutScreen = ({navigation}) => {
           </Checkbox>
           {/* show choosed address  */}
 
-          {showAddressCard && (
+          {selectedAddress && showAddressCard && (
             <Box
               // minW="32"
               rounded="lg"
@@ -579,16 +638,16 @@ const CheckOutScreen = ({navigation}) => {
               />
               <VStack space={2} px={7}>
                 <Text bold fontSize={18}>
-                  Myanmar Web Creator
+                  {selectedAddress?.full_name}
                 </Text>
                 <Text fontSize={18} style={{color: 'gray'}}>
-                  Yangon, Myanmar
+                  {selectedAddress?.region}, {selectedAddress?.township}
                 </Text>
                 <Text fontSize={18} style={{color: 'gray'}}>
-                  No.624, Gankgaw Yeik Thar Street 16/4
+                  {selectedAddress?.address}
                 </Text>
                 <Text fontSize={18} style={{color: 'gray'}}>
-                  0900000000
+                  {selectedAddress?.phone}
                 </Text>
               </VStack>
             </Box>

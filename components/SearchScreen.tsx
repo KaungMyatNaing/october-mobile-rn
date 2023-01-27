@@ -1,5 +1,5 @@
 import {TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   Center,
   Container,
@@ -19,6 +19,7 @@ import {useToast} from 'native-base';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import {color} from 'react-native-reanimated';
+import {AddressContext} from './context/AddressContext';
 const SearchScreen = ({navigation}) => {
   const [showModal, setShowModal] = React.useState<boolean>(false);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -30,170 +31,166 @@ const SearchScreen = ({navigation}) => {
   const cancelRef = React.useRef(null);
 
   // fetch addresses
-  const [addresses, setAddresses] = React.useState([]);
 
-  React.useEffect(() => {
-    fetch(`https://api.october.com.mm/api/address/`, {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer 422|OpVkXK4kXQg2eNApUlTCmUOgOlzPvVsKpgMDE7kw',
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        const sortedData = data.data.address.sort(
-          (a, b) => b.is_default - a.is_default,
-        );
-        setAddresses(sortedData);
-      })
+  const {
+    addressBooks,
+    handleChange,
+    handleAddNewAddress,
+    handleDefaultAddress,
+    handleDeleteAddress,
+  } = useContext(AddressContext);
 
-      .catch(err =>
-        toast.show({
-          title: 'Something went wrong',
-          placement: 'top',
-        }),
-      );
-  }, [addresses]);
+  const handleAddNewAddressContext = () => {
+    handleAddNewAddress();
+    setShowModal(false);
+  };
+
+  const handleDeleteAddressContext = id => {
+    handleDeleteAddress(id);
+    onClose();
+  };
 
   // add new addresses
 
-  const [values, setValues] = React.useState({
-    fullName: '',
-    phone: '',
-    region: '',
-    city: '',
-    township: '',
-    buildingNo: '',
-    address: '',
-    type: '',
-  });
+  // const [values, setValues] = React.useState({
+  //   fullName: '',
+  //   phone: '',
+  //   region: '',
+  //   city: '',
+  //   township: '',
+  //   buildingNo: '',
+  //   address: '',
+  //   type: '',
+  // });
 
-  const handleChange = (prop, text) => {
-    setValues({...values, [prop]: text});
-  };
+  // const handleChange1 = (prop, text) => {
+  //   setValues({...values, [prop]: text});
+  // };
 
-  const handleAddNewAddress = () => {
-    setShowModal(false);
-    const full_name = values.fullName;
-    const phone = values.phone;
-    const region = values.region;
-    const city = values.city;
-    const township = values.township;
-    const building_no = values.buildingNo;
-    const address = values.address;
-    const type = values.type;
+  // const handleAddNewAddress1 = () => {
+  //   console.log('handleAddNewAddress');
+  //   setShowModal(false);
+  //   const full_name = values.fullName;
+  //   const phone = values.phone;
+  //   const region = values.region;
+  //   const city = values.city;
+  //   const township = values.township;
+  //   const building_no = values.buildingNo;
+  //   const address = values.address;
+  //   const type = values.type;
 
-    const data = {
-      full_name: full_name,
-      phone: phone,
-      region: region,
-      city: city,
-      township: township,
-      building_no: building_no,
-      address: building_no,
-      type: type,
-    };
+  //   const data = {
+  //     full_name: full_name,
+  //     phone: phone,
+  //     region: region,
+  //     city: city,
+  //     township: township,
+  //     building_no: building_no,
+  //     address: building_no,
+  //     type: type,
+  //   };
 
-    fetch(`https://api.october.com.mm/api/address-create/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer 422|OpVkXK4kXQg2eNApUlTCmUOgOlzPvVsKpgMDE7kw',
-      },
-      body: JSON.stringify(data),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success === true) {
-          toast.show({
-            title: data.message,
-            placement: 'top',
-          });
-        } else {
-          toast.show({
-            title: 'failed',
-            placement: 'top',
-          });
-        }
-      })
+  //   fetch(`https://api.october.com.mm/api/address-create/`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: 'Bearer 422|OpVkXK4kXQg2eNApUlTCmUOgOlzPvVsKpgMDE7kw',
+  //     },
+  //     body: JSON.stringify(data),
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       if (data.success === true) {
+  //         toast.show({
+  //           title: data.message,
+  //           placement: 'top',
+  //         });
+  //       } else {
+  //         toast.show({
+  //           title: 'failed',
+  //           placement: 'top',
+  //         });
+  //       }
+  //     })
 
-      .catch(err =>
-        toast.show({
-          title: 'Something went wrong',
-          placement: 'top',
-        }),
-      );
-  };
+  //     .catch(err =>
+  //       toast.show({
+  //         title: 'Something went wrong',
+  //         placement: 'top',
+  //       }),
+  //     );
+  // };
 
   // delete address
 
-  const handleDeleteAddress = id => {
-    onClose();
-    fetch(`https://api.october.com.mm/api/address-remove/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer 422|OpVkXK4kXQg2eNApUlTCmUOgOlzPvVsKpgMDE7kw',
-      },
-      // body: JSON.stringify(data),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success === true) {
-          toast.show({
-            title: data.message,
-            placement: 'top',
-          });
-        } else {
-          toast.show({
-            title: 'failed',
-            placement: 'top',
-          });
-        }
-      })
+  // const handleDeleteAddress = id => {
+  //   console.log('handleDeleteAddress');
+  //   onClose();
+  //   fetch(`https://api.october.com.mm/api/address-remove/${id}`, {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: 'Bearer 422|OpVkXK4kXQg2eNApUlTCmUOgOlzPvVsKpgMDE7kw',
+  //     },
+  //     // body: JSON.stringify(data),
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       if (data.success === true) {
+  //         toast.show({
+  //           title: data.message,
+  //           placement: 'top',
+  //         });
+  //       } else {
+  //         toast.show({
+  //           title: 'failed',
+  //           placement: 'top',
+  //         });
+  //       }
+  //     })
 
-      .catch(err =>
-        toast.show({
-          title: 'Something went wrong',
-          placement: 'top',
-        }),
-      );
-  };
+  //     .catch(err =>
+  //       toast.show({
+  //         title: 'Something went wrong',
+  //         placement: 'top',
+  //       }),
+  //     );
+  // };
 
   // set default address
 
-  const handleDefaultAddress = id => {
-    console.log('default address', id);
-    fetch(`https://api.october.com.mm/api/default-address/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer 422|OpVkXK4kXQg2eNApUlTCmUOgOlzPvVsKpgMDE7kw',
-      },
-      // body: JSON.stringify(data),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success === true) {
-          toast.show({
-            title: data.message,
-            placement: 'top',
-          });
-        } else {
-          toast.show({
-            title: 'failed',
-            placement: 'top',
-          });
-        }
-      })
+  // const handleDefaultAddress1 = id => {
+  //   console.log('handleDefaultAddress');
+  //   fetch(`https://api.october.com.mm/api/default-address/${id}`, {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: 'Bearer 422|OpVkXK4kXQg2eNApUlTCmUOgOlzPvVsKpgMDE7kw',
+  //     },
+  //     // body: JSON.stringify(data),
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       if (data.success === true) {
+  //         toast.show({
+  //           title: data.message,
+  //           placement: 'top',
+  //         });
+  //       } else {
+  //         toast.show({
+  //           title: 'failed',
+  //           placement: 'top',
+  //         });
+  //       }
+  //     })
 
-      .catch(err =>
-        toast.show({
-          title: 'Something went wrong',
-          placement: 'top',
-        }),
-      );
-  };
+  //     .catch(err =>
+  //       toast.show({
+  //         title: 'Something went wrong',
+  //         placement: 'top',
+  //       }),
+  //     );
+  // };
 
   return (
     <>
@@ -216,8 +213,8 @@ const SearchScreen = ({navigation}) => {
         <Center>
           {/* address card  */}
 
-          {addresses &&
-            addresses.map(address => {
+          {addressBooks &&
+            addressBooks.map(address => {
               return (
                 <Container
                   h="auto"
@@ -283,7 +280,9 @@ const SearchScreen = ({navigation}) => {
                               </Button>
                               <Button
                                 colorScheme="danger"
-                                onPress={() => handleDeleteAddress(address.id)}>
+                                onPress={() =>
+                                  handleDeleteAddressContext(address.id)
+                                }>
                                 Delete
                               </Button>
                             </Button.Group>
@@ -434,7 +433,7 @@ const SearchScreen = ({navigation}) => {
                         // onPress={() => {
                         //   setShowModal(false);
                         // }}
-                        onPress={() => handleAddNewAddress()}>
+                        onPress={() => handleAddNewAddressContext()}>
                         Save
                       </Button>
                     </Button.Group>
